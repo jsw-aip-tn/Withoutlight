@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://6no78pgvrpup"]
+
+[ext_resource type="Script" path="res://Script/character_body_2d.gd" id="1_m5y7q"]
+[ext_resource type="Texture2D" uid="uid://de6lu6v7x24f8" path="res://Assets/Charakter/iron arrow.png" id="1_p3s52"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7m7t"]
+size = Vector2(67, 20)
+
+[node name="arrow" type="CharacterBody2D"]
+script = ExtResource("1_m5y7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_p3s52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_v7m7t")
