@@ -6,6 +6,8 @@ const SPEED = 160.0
 var enemy_in_range = false
 var atk_cooldown = true
 var player_alive = true
+var direction : Vector2
+var facing : Vector2 = Vector2.LEFT
 
 const arrow_path = preload("res://Szene/character_body_2d.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
@@ -29,7 +31,9 @@ func player():
 	pass
 
 func movement():
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if facing != direction and direction != Vector2.ZERO:
+		facing = direction
 	if direction.length():
 		direction = direction.normalized()
 		velocity = direction * SPEED
@@ -38,20 +42,18 @@ func movement():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		idle_animation()
-	animation(direction)
+	animation()
 	move_and_slide()
 
-func animation(direction: Vector2):
+func animation():
 	# Wenn eine Bewegung stattfindet, wird die "run"-Animation abgespielt
 	if direction.x != 0 :
 		if direction.x > 0:
 			animated_sprite.flip_h = false  # Blick nach rechts
 			$AnimatedSprite2D/arrowSpawnPoint.position.x = 30
-			$AnimatedSprite2D/arrowSpawnPoint.rotation = 3.14
 		else:
 			animated_sprite.flip_h = true  # Blick nach links
 			$AnimatedSprite2D/arrowSpawnPoint.position.x = -30
-			$AnimatedSprite2D/arrowSpawnPoint.rotation = 3.14
 		if not animated_sprite.is_playing() or animated_sprite.animation != "run":
 			animated_sprite.play("run")  # Abspielen der Lauf-Animation
 #Bewegung nach Oben
@@ -72,11 +74,12 @@ func animation(direction: Vector2):
 			animated_sprite.play("range_atk")  # Abspielen der Fernkampf-Animation
 		cooldown_timer.start()
 
-func fire():
+func fire(dir : Vector2):
 	var arrow = arrow_path.instantiate()
+	print(dir)
 	if range_attack_triggered:
 		arrow.pos = $AnimatedSprite2D/arrowSpawnPoint.global_position
-		arrow.rota  = $AnimatedSprite2D/arrowSpawnPoint.global_rotation
+		arrow.rota = deg_to_rad((dir.x*90)-90) # lol
 		get_parent().add_child(arrow)
 	
 # Funktion für Idle-Animation, wenn keine Eingabe erfolgt
@@ -116,7 +119,7 @@ func enemy_attack():
 #
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false
-	fire()
+	fire(facing)
 	range_attack_triggered = false
 	cooldown_timer.stop()
 	#atk_cooldown = true
