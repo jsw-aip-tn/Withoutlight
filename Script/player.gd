@@ -8,7 +8,7 @@ var atk_cooldown = true
 var player_alive = true
 var direction : Vector2
 var facing : Vector2 = Vector2.LEFT
-
+const TORCH = preload("res://Szene/torch.tscn")
 const arrow_path = preload("res://Szene/character_body_2d.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
 
@@ -21,7 +21,7 @@ var animation_player : AnimationPlayer
 
 func _physics_process(delta: float) -> void:
 	movement()
-	
+	place_torch()
 	#enemy_attack()
 	
 	if hp <= 0:
@@ -45,6 +45,12 @@ func movement():
 	animation()
 	move_and_slide()
 
+func place_torch():
+	if Input.is_action_just_pressed("place_torch"):
+		var torch = TORCH.instantiate()
+		torch.position = position
+		get_parent().add_child(torch)
+		
 func animation():
 	# Wenn eine Bewegung stattfindet, wird die "run"-Animation abgespielt
 	if direction.x != 0 :
@@ -79,7 +85,7 @@ func fire(dir : Vector2):
 	print(dir)
 	if range_attack_triggered:
 		arrow.pos = $AnimatedSprite2D/arrowSpawnPoint.global_position
-		arrow.rota = deg_to_rad((dir.x*90)-90) # lol
+		arrow.rota = deg_to_rad((dir.x*90)-90) 
 		get_parent().add_child(arrow)
 	
 # Funktion für Idle-Animation, wenn keine Eingabe erfolgt
@@ -98,11 +104,10 @@ func idle_animation():
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = true
-		received_damaged(body)
+		body.received_damaged(atk)
 
-
-func received_damaged(enemy):
-	hp = hp -  enemy.get_damage()
+func received_damaged(atk):
+	hp = hp -  atk
 	if hp >= 0:
 		player_alive = false
 #
@@ -111,11 +116,9 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = false
 #
-#
 func enemy_attack():
 	if enemy_in_range and atk_cooldown == true:
 		return atk
-#
 #
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cf0fxa3ac7nhb"]
+[gd_scene load_steps=36 format=3 uid="uid://cf0fxa3ac7nhb"]
 
 [ext_resource type="Texture2D" uid="uid://cv0l1yvaxjpda" path="res://Assets/Charakter/adventurer-Sheet.png" id="1_upfeo"]
 [ext_resource type="Script" path="res://Script/player.gd" id="1_x6ic7"]
@@ -251,6 +251,17 @@ _data = {
 "range_atk": SubResource("Animation_4ofmk")
 }
 
+[sub_resource type="Gradient" id="Gradient_3tvbq"]
+offsets = PackedFloat32Array(0, 0.75974)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b8jio"]
+gradient = SubResource("Gradient_3tvbq")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_x6ic7")
 
@@ -281,6 +292,8 @@ wait_time = 0.9
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 0
+limit_right = 1730
+limit_bottom = 1080
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
@@ -288,6 +301,10 @@ drag_vertical_enabled = true
 libraries = {
 "": SubResource("AnimationLibrary_1vl5n")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -14)
+texture = SubResource("GradientTexture2D_b8jio")
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

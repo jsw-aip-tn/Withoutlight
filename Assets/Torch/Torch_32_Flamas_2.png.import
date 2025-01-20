@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr7f4evegbayv"
-path="res://.godot/imported/Bat4.png-698fded6442cc51cca85acf9fc82460d.ctex"
+uid="uid://boi25un6j6qmf"
+path="res://.godot/imported/Torch_32_Flamas_2.png-803475ccb6b42351f0c004183f941163.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Bat/Bat4.png"
-dest_files=["res://.godot/imported/Bat4.png-698fded6442cc51cca85acf9fc82460d.ctex"]
+source_file="res://Assets/Torch/Torch_32_Flamas_2.png"
+dest_files=["res://.godot/imported/Torch_32_Flamas_2.png-803475ccb6b42351f0c004183f941163.ctex"]
 
 [params]
 

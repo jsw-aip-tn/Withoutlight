@@ -14,7 +14,31 @@ position = Vector2(96, 432)
 position = Vector2(53, 56)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(241, 1089)
+position = Vector2(250, 1075)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_rp30t")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(0, 631)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_rp30t")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(369, 10)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_rp30t")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(1711, 220)
+rotation = 4.71239
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("WorldBoundaryShape2D_rp30t")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1
