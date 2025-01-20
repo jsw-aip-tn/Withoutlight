@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjif787o0f6fa"]
+[gd_scene load_steps=7 format=3 uid="uid://bjif787o0f6fa"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_sajp2"]
-[ext_resource type="Texture2D" uid="uid://b3uatusihceb6" path="res://Assets/Bat/Bat1.png" id="2_lglv6"]
-[ext_resource type="Texture2D" uid="uid://cnllmbd60ywob" path="res://Assets/Bat/Bat2.png" id="3_eg3s4"]
-[ext_resource type="Texture2D" uid="uid://bpo82gqpnvdpv" path="res://Assets/Bat/Bat3.png" id="4_w1445"]
-[ext_resource type="Texture2D" uid="uid://cr7f4evegbayv" path="res://Assets/Bat/Bat4.png" id="5_pkxgp"]
+[ext_resource type="Texture2D" uid="uid://b3uatusihceb6" path="res://Assets/Bat/Bat1.png" id="1_wigmr"]
+[ext_resource type="Texture2D" uid="uid://cnllmbd60ywob" path="res://Assets/Bat/Bat2.png" id="2_rdycs"]
+[ext_resource type="Texture2D" uid="uid://bpo82gqpnvdpv" path="res://Assets/Bat/Bat3.png" id="3_m22dl"]
+[ext_resource type="Texture2D" uid="uid://cr7f4evegbayv" path="res://Assets/Bat/Bat4.png" id="4_kppu8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
 size = Vector2(119, 76)
@@ -13,16 +12,16 @@ size = Vector2(119, 76)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lglv6")
+"texture": ExtResource("1_wigmr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_eg3s4")
+"texture": ExtResource("2_rdycs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_w1445")
+"texture": ExtResource("3_m22dl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_pkxgp")
+"texture": ExtResource("4_kppu8")
 }],
 "loop": true,
 "name": &"fly",
@@ -33,7 +32,6 @@ animations = [{
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 floor_constant_speed = true
-script = ExtResource("1_sajp2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(505.5, 376)

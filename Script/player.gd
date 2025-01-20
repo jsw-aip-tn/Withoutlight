@@ -9,7 +9,7 @@ var player_alive = true
 var direction : Vector2
 var facing : Vector2 = Vector2.LEFT
 const TORCH = preload("res://Szene/torch.tscn")
-const arrow_path = preload("res://Szene/character_body_2d.tscn")
+const arrow_path = preload("res://Szene/arrow.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
 
 
