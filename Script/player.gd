@@ -51,6 +51,7 @@ func place_torch():
 		torch.position = position
 		get_parent().add_child(torch)
 		
+		
 func animation():
 	# Wenn eine Bewegung stattfindet, wird die "run"-Animation abgespielt
 	if direction.x != 0 :

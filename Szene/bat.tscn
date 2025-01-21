@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjif787o0f6fa"]
+[gd_scene load_steps=8 format=3 uid="uid://bjif787o0f6fa"]
 
+[ext_resource type="Script" path="res://Script/bat.gd" id="1_rx3w4"]
 [ext_resource type="Texture2D" uid="uid://b3uatusihceb6" path="res://Assets/Bat/Bat1.png" id="1_wigmr"]
 [ext_resource type="Texture2D" uid="uid://cnllmbd60ywob" path="res://Assets/Bat/Bat2.png" id="2_rdycs"]
 [ext_resource type="Texture2D" uid="uid://bpo82gqpnvdpv" path="res://Assets/Bat/Bat3.png" id="3_m22dl"]
@@ -29,16 +30,19 @@ animations = [{
 }]
 
 [node name="Bat" type="Node2D"]
+position = Vector2(1.90735e-06, 4.76837e-07)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_rx3w4")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 floor_constant_speed = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(505.5, 376)
+position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_jrc82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(505.5, 376)
+position = Vector2(-9.41753e-06, -2.44379e-06)
 sprite_frames = SubResource("SpriteFrames_wlrea")
 animation = &"fly"
 autoplay = "fly"

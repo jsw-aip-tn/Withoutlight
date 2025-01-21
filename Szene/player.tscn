@@ -304,6 +304,7 @@ libraries = {
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -14)
+range_z_max = 0
 texture = SubResource("GradientTexture2D_b8jio")
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddl2yk37wardf"]
-
-[ext_resource type="Texture2D" uid="uid://b3uatusihceb6" path="res://Assets/Bat/Bat1.png" id="1_j77fn"]
-
-[node name="Bat1" type="Sprite2D"]
-position = Vector2(335, 284)
-texture = ExtResource("1_j77fn")
