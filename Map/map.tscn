@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://gn8mhdtxcqse"]
+[gd_scene load_steps=6 format=3 uid="uid://gn8mhdtxcqse"]
 
 [ext_resource type="Texture2D" uid="uid://drny3e6lh8eau" path="res://Map/forest_tiles.png" id="1_y7gt3"]
 [ext_resource type="Script" path="res://Script/SpawnManager.gd" id="1_y78nd"]
+[ext_resource type="PackedScene" uid="uid://bjif787o0f6fa" path="res://Szene/bat.tscn" id="3_ktovk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3wjom"]
 texture = ExtResource("1_y7gt3")
@@ -759,7 +760,8 @@ script = ExtResource("1_y78nd")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-position = Vector2(1, 0)
+position = Vector2(-5, -6)
+scale = Vector2(1.01981, 1.00237)
 tile_set = SubResource("TileSet_poxgr")
 format = 2
 layer_0/y_sort_enabled = true
@@ -828,3 +830,6 @@ position = Vector2(1489, 228)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions"]
 position = Vector2(2, -4)
 polygon = PackedVector2Array(-99, -431, 1649, -427, 1651, 651, -92, 653, -99, -406, -125, -386, -130, 660, 1701, 680, 1712, -454, -130, -457, -130, -429, -130, -390, -102, -411)
+
+[node name="Bat" parent="." instance=ExtResource("3_ktovk")]
+position = Vector2(-34, -383)

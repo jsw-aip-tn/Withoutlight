@@ -1,21 +1,21 @@
 extends CharacterBody2D
 
 var hp = 50
-var atk = 10
+var atk = 0
 const SPEED = 160.0
 var enemy_in_range = false
 var atk_cooldown = true
 var player_alive = true
 var direction : Vector2
 var facing : Vector2 = Vector2.LEFT
+var range_attack_triggered : bool = false
+var melee_attack_triggered : bool = false
+var animation_player : AnimationPlayer 
+
 const TORCH = preload("res://Szene/torch.tscn")
 const arrow_path = preload("res://Szene/arrow.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
 
-
-var range_attack_triggered : bool = false
-var melee_attack_triggered : bool = false
-var animation_player : AnimationPlayer 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cooldown_timer: Timer = $atk_cooldown
 
@@ -50,7 +50,6 @@ func place_torch():
 		var torch = TORCH.instantiate()
 		torch.position = position
 		get_parent().add_child(torch)
-		
 		
 func animation():
 	# Wenn eine Bewegung stattfindet, wird die "run"-Animation abgespielt
@@ -99,17 +98,16 @@ func idle_animation():
 	if not animated_sprite.is_playing() or animated_sprite.animation != "idle":
 		animated_sprite.play("idle")  # Abspielen der Idle-Animation
 		
-		
-		
-		
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = true
+		print(true)
 		body.received_damaged(atk)
 
 func received_damaged(atk):
 	hp = hp -  atk
 	if hp >= 0:
+		print(hp)
 		player_alive = false
 #
 #
