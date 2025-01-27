@@ -5,7 +5,7 @@ const BAT = preload("res://Szene/bat.tscn")
 @onready var bat_spawn_1: Marker2D = $BatSpawn1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	current_wave = 0
+	current_wave = 10
 	start_wave()
 	#prepare_spawn("bat", 10,15)
 
@@ -17,10 +17,10 @@ func start_wave():
 func spawn_monsters():
 	var bat_spawn_points = [$BatSpawn1, $BatSpawn2, $BatSpawn3, $BatSpawn4, $BatSpawn5]
 	var many_of_monsters = current_wave 
-	for i in many_of_monsters:
-		#var spawn_point = bat_spawn_points[i]
+	for i in range(many_of_monsters):
+		var spawn_point = bat_spawn_points[i % bat_spawn_points.size()]  # Modulo, um nicht über das Array hinaus zu gehen
 		var bat = BAT.instantiate()
-		bat.position = bat_spawn_1.position
+		bat.position = spawn_point.position
 		add_child(bat)
 		
 		

@@ -9,7 +9,7 @@
 position = Vector2(96, 432)
 
 [node name="Player" parent="." instance=ExtResource("1_ur571")]
-position = Vector2(53, 56)
+position = Vector2(55, 94)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1

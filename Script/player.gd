@@ -101,7 +101,6 @@ func idle_animation():
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = true
-		print(true)
 		body.received_damaged(atk)
 
 func received_damaged(atk):
