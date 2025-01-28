@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 200.0
-var atk = 2
+var atk = 5
 var pos: Vector2
 var rota : float
 var dir : float 

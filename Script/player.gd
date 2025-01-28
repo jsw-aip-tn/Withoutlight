@@ -106,7 +106,6 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 func received_damaged(atk):
 	hp = hp -  atk
 	if hp >= 0:
-		print(hp)
 		player_alive = false
 #
 #

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbhngfuhn3e6q"]
+
+[ext_resource type="Script" path="res://Script/wood.gd" id="1_p1wb1"]
+[ext_resource type="Texture2D" uid="uid://sdrr3vt32o6e" path="res://Assets/Wood/wood_1.png" id="1_ppvql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b407n"]
+atlas = ExtResource("1_ppvql")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ktt82"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b407n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtria"]
+size = Vector2(48, 47)
+
+[node name="Wood" type="Area2D"]
+script = ExtResource("1_p1wb1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ktt82")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -1.5)
+shape = SubResource("RectangleShape2D_mtria")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

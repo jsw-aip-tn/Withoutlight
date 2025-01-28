@@ -43,15 +43,11 @@ func _on_enemie_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_range = false
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_range = true
-		print(player_in_range)
 		target = body
 		body.received_damaged(atk)
-		print(player_in_range)
-
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.

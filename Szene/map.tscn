@@ -11,6 +11,3 @@ layer_1/tile_data = PackedInt32Array(65635, 0, 13, 131171, 0, 14, 196707, 0, 15,
 
 [node name="BatSpawn1" parent="." index="1"]
 position = Vector2(271, 508)
-
-[node name="Bat" parent="." index="20"]
-position = Vector2(-9, 309)

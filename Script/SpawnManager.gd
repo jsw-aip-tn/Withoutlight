@@ -1,8 +1,10 @@
 extends Node2D
 
 var current_wave: int
+var many_of_monsters = current_wave 
 const BAT = preload("res://Szene/bat.tscn")
-@onready var bat_spawn_1: Marker2D = $BatSpawn1
+#@onready var bat_spawn_1: Marker2D = $BatSpawn1
+const WOOD = preload("res://Szene/wood.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_wave = 10
@@ -12,20 +14,28 @@ func _ready() -> void:
 func start_wave():
 	current_wave += 1
 	spawn_monsters()
+	spawn_wood()
 	
 
 func spawn_monsters():
 	var bat_spawn_points = [$BatSpawn1, $BatSpawn2, $BatSpawn3, $BatSpawn4, $BatSpawn5]
 	var many_of_monsters = current_wave 
 	for i in range(many_of_monsters):
-		var spawn_point = bat_spawn_points[i % bat_spawn_points.size()]  # Modulo, um nicht über das Array hinaus zu gehen
+		var spawn_point = bat_spawn_points[i % bat_spawn_points.size()]  # Modulo damit man nicht über die Anzal der Spawnpoint micht überschritter wird
 		var bat = BAT.instantiate()
 		bat.position = spawn_point.position
 		add_child(bat)
 		
+func spawn_wood():
+	var wood_spawn_points = [$WoodSpawn]
+	for i in range(many_of_monsters):
+		var spawn_point = wood_spawn_points[i % wood_spawn_points.size()] 
+		var wood = WOOD.instantiate()
+		wood.position = spawn_point.position
+		add_child(wood)
+		print("woodSpawn")
 		
-		
-		
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
