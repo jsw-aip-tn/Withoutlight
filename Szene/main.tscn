@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceq4caiu3es4v"]
+[gd_scene load_steps=4 format=3 uid="uid://ceq4caiu3es4v"]
 
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Szene/player.tscn" id="1_ur571"]
+[ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Szene/global.tscn" id="3_f4v26"]
 
 [node name="Game" type="Node"]
 
@@ -13,3 +14,5 @@ position = Vector2(55, 94)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
+
+[node name="Global" parent="." instance=ExtResource("3_f4v26")]

@@ -47,9 +47,11 @@ func movement():
 
 func place_torch():
 	if Input.is_action_just_pressed("place_torch"):
-		var torch = TORCH.instantiate()
-		torch.position = position
-		get_parent().add_child(torch)
+		if (Global.wood_stack > 0):
+			var torch = TORCH.instantiate()
+			Global.wood_stack -=1
+			torch.position = position
+			get_parent().add_child(torch)
 		
 func animation():
 	# Wenn eine Bewegung stattfindet, wird die "run"-Animation abgespielt

@@ -1,40 +1,49 @@
 extends Node2D
 
-var current_wave: int
-var many_of_monsters = current_wave 
+var many_to_spawn: int 
 const BAT = preload("res://Szene/bat.tscn")
 #@onready var bat_spawn_1: Marker2D = $BatSpawn1
 const WOOD = preload("res://Szene/wood.tscn")
+
+@onready var wave_timer: Timer = $WaveTimer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	current_wave = 10
-	start_wave()
+	Global.current_wave = 10
+	wave_timer.start()
+	
 	#prepare_spawn("bat", 10,15)
 
 func start_wave():
-	current_wave += 1
+	Global.current_wave += 1  
+	many_to_spawn = Global.current_wave 
 	spawn_monsters()
 	spawn_wood()
+	wave_timer.start()
 	
 
 func spawn_monsters():
-	var bat_spawn_points = [$BatSpawn1, $BatSpawn2, $BatSpawn3, $BatSpawn4, $BatSpawn5]
-	var many_of_monsters = current_wave 
-	for i in range(many_of_monsters):
+	var bat_spawn_points = [$SpawnPoints/BatSpawn1, $SpawnPoints/BatSpawn2, $SpawnPoints/BatSpawn3, $SpawnPoints/BatSpawn4, $SpawnPoints/BatSpawn5]
+	for i in range(many_to_spawn):
 		var spawn_point = bat_spawn_points[i % bat_spawn_points.size()]  # Modulo damit man nicht über die Anzal der Spawnpoint micht überschritter wird
 		var bat = BAT.instantiate()
 		bat.position = spawn_point.position
 		add_child(bat)
 		
 func spawn_wood():
-	var wood_spawn_points = [$WoodSpawn]
-	for i in range(many_of_monsters):
+	var wood_spawn_points = [$SpawnPoints/WoodSpawn]
+	for i in range(2):
 		var spawn_point = wood_spawn_points[i % wood_spawn_points.size()] 
 		var wood = WOOD.instantiate()
 		wood.position = spawn_point.position
 		add_child(wood)
-		print("woodSpawn")
 		
+
+
+func _on_wave_timer_timeout() -> void:
+	wave_timer.stop()
+	start_wave()
+	print(Global.current_wave)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

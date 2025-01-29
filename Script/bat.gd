@@ -34,7 +34,6 @@ func movement(delta: float):
 	
 func received_damaged(atk):
 	hp = hp -  atk
-	print(hp)
 	if hp <= 0:
 		print("Dead")
 		queue_free()
@@ -44,10 +43,11 @@ func _on_enemie_hitbox_body_exited(body: Node2D) -> void:
 		player_in_range = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.has_method("Fly"):
 		player_in_range = true
 		target = body
 		body.received_damaged(atk)
+		print(hp)
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.

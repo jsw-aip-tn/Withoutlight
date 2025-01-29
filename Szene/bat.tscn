@@ -62,9 +62,10 @@ autoplay = "fly"
 frame_progress = 0.460057
 
 [node name="Timer" type="Timer" parent="Bat"]
+wait_time = 2.0
 autostart = true
 
-[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]

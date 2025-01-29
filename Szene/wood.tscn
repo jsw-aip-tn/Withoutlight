@@ -22,6 +22,7 @@ animations = [{
 size = Vector2(48, 47)
 
 [node name="Wood" type="Area2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_p1wb1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
