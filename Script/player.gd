@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-var hp = 50
+var maxHp = 100
+var hp = 100
 var atk = 0
 const SPEED = 160.0
 var enemy_in_range = false
@@ -12,12 +13,19 @@ var range_attack_triggered : bool = false
 var melee_attack_triggered : bool = false
 var animation_player : AnimationPlayer 
 
+
 const TORCH = preload("res://Szene/torch.tscn")
 const arrow_path = preload("res://Szene/arrow.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cooldown_timer: Timer = $atk_cooldown
+@onready var progress_bar: ProgressBar = $ProgressBar2
+
+
+
+func _ready() -> void:
+	update_hpBar()
 
 func _physics_process(delta: float) -> void:
 	movement()
@@ -44,6 +52,10 @@ func movement():
 		idle_animation()
 	animation()
 	move_and_slide()
+
+func update_hpBar():
+	progress_bar.update_health(hp, maxHp)
+	
 
 func place_torch():
 	if Input.is_action_just_pressed("place_torch"):
@@ -107,6 +119,8 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 
 func received_damaged(atk):
 	hp = hp -  atk
+	update_hpBar()
+	print(hp)
 	if hp >= 0:
 		player_alive = false
 #

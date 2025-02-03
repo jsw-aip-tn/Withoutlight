@@ -9,7 +9,6 @@ const WOOD = preload("res://Szene/wood.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.current_wave = 10
 	wave_timer.start()
 	
 	#prepare_spawn("bat", 10,15)

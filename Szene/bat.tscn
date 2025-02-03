@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjif787o0f6fa"]
+[gd_scene load_steps=11 format=3 uid="uid://bjif787o0f6fa"]
 
 [ext_resource type="Script" path="res://Script/bat.gd" id="1_rx3w4"]
 [ext_resource type="Texture2D" uid="uid://b3uatusihceb6" path="res://Assets/Bat/Bat1.png" id="1_wigmr"]
 [ext_resource type="Texture2D" uid="uid://cnllmbd60ywob" path="res://Assets/Bat/Bat2.png" id="2_rdycs"]
 [ext_resource type="Texture2D" uid="uid://bpo82gqpnvdpv" path="res://Assets/Bat/Bat3.png" id="3_m22dl"]
 [ext_resource type="Texture2D" uid="uid://cr7f4evegbayv" path="res://Assets/Bat/Bat4.png" id="4_kppu8"]
+[ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Szene/HPBar.tscn" id="6_uptis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
 size = Vector2(105, 50)
@@ -32,6 +33,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l43x"]
+
 [node name="Bat" type="Node2D"]
 light_mask = 7
 visibility_layer = 7
@@ -43,11 +46,12 @@ floor_constant_speed = true
 script = ExtResource("1_rx3w4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
+visible = false
 position = Vector2(-9.05991e-06, -2.38419e-06)
 shape = SubResource("RectangleShape2D_84b2s")
 
 [node name="enemie_hitbox" type="Area2D" parent="Bat"]
-position = Vector2(1, -1)
+position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox"]
@@ -65,7 +69,23 @@ frame_progress = 0.460057
 wait_time = 2.0
 autostart = true
 
+[node name="ProgressBar2" parent="Bat" instance=ExtResource("6_uptis")]
+offset_left = -55.0
+offset_top = 45.0
+offset_right = -36.0
+offset_bottom = 48.0
+scale = Vector2(5.68888, 3.65064)
+
+[node name="SearchArea" type="Area2D" parent="Bat"]
+scale = Vector2(1.12727, 1.22671)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/SearchArea"]
+scale = Vector2(-39.7203, 26.2304)
+shape = SubResource("CircleShape2D_2l43x")
+
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_exited"]

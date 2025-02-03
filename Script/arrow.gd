@@ -5,6 +5,9 @@ var atk = 5
 var pos: Vector2
 var rota : float
 var dir : float 
+var found_target = false
+var target
+var direction_to_target: Vector2 = Vector2.ZERO
 @onready var lifetime: Timer = $Lifetime
 
 
@@ -14,7 +17,15 @@ func _ready() -> void:
 	_start_timer()
 
 func _physics_process(delta: float) -> void:
-	velocity = (Vector2.RIGHT * SPEED).rotated(rota)
+	if !found_target:
+		velocity = (Vector2.RIGHT * SPEED).rotated(rota)
+	else:   
+		 # Wenn das Ziel gefunden wurde, wird die Richtung nicht mehr neu berechnet
+		# Nur den gespeicherten Vektor verwenden
+		velocity = direction_to_target.normalized() * SPEED
+		
+		# Optional: Rotieren des Pfeils in Richtung der Bewegung
+		rotation = direction_to_target.angle()
 	move_and_slide()
 
 
@@ -31,3 +42,11 @@ func _on_lifetime_timeout() -> void:
 
 func Fly():
 	pass	
+
+
+func _on_searchradius_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		found_target = true
+		target = body
+		# Berechne den Vektor, der das Ziel angibt
+		direction_to_target = target.global_position - global_position
