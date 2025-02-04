@@ -17,13 +17,13 @@ size = Vector2(119, 76)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_m22dl")
+}, {
+"duration": 1.0,
 "texture": ExtResource("1_wigmr")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_rdycs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_m22dl")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_kppu8")
