@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=2 format=3 uid="uid://1qdi3c3eq1a2"]
 
-[ext_resource type="Script" path="res://Script/wolf.gd" id="1_nxfpt"]
 [ext_resource type="SpriteFrames" path="res://Assets/Wolf/" id="1_u57dv"]
 
 [node name="Wolf" type="Node2D"]
-script = ExtResource("1_nxfpt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_u57dv")
 animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.671413
+frame_progress = 0.353721
