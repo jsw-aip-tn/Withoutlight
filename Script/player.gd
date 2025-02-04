@@ -12,7 +12,8 @@ var facing : Vector2 = Vector2.LEFT
 var range_attack_triggered : bool = false
 var melee_attack_triggered : bool = false
 var animation_player : AnimationPlayer 
-
+var light_nearby = false
+var torch_nearby: int
 
 const TORCH = preload("res://Szene/torch.tscn")
 const arrow_path = preload("res://Szene/arrow.tscn")
@@ -50,8 +51,10 @@ func movement():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		idle_animation()
-	animation()
-	move_and_slide()
+
+	if !melee_attack_triggered && !range_attack_triggered:
+			animation()
+			move_and_slide()
 
 func update_hpBar():
 	progress_bar.update_health(hp, maxHp)
@@ -60,10 +63,11 @@ func update_hpBar():
 func place_torch():
 	if Input.is_action_just_pressed("place_torch"):
 		if (Global.wood_stack > 0):
-			var torch = TORCH.instantiate()
-			Global.wood_stack -=1
-			torch.position = position
-			get_parent().add_child(torch)
+			if !light_nearby && torch_nearby <= 0:
+				var torch = TORCH.instantiate()
+				Global.wood_stack -=1
+				torch.position = position
+				get_parent().add_child(torch)
 		
 func animation():
 	# Wenn eine Bewegung stattfindet, wird die "run"-Animation abgespielt
@@ -124,7 +128,11 @@ func received_damaged(atk):
 	if hp >= 0:
 		player_alive = false
 #
-#
+func pushback(enemy_position: Vector2, pushback_strength):
+	var pushback_direction = (position - enemy_position)  
+	velocity = pushback_direction * pushback_strength  
+	move_and_slide() 
+	
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = false
