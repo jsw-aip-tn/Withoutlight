@@ -4,6 +4,7 @@ var maxhp = 20
 var hp = 20
 var atk = 2
 const SPEED = 50.0
+var pushback_strength  = 1
 var player_in_range = false
 var direction = Vector2()
 var time_since_last_change = 0
@@ -28,23 +29,20 @@ func movement(delta: float):
 	time_since_last_change += delta
 	if player_in_range:
 		direction = target_direction.normalized()
-		print("in Range")
-		print(target_direction)
-		velocity = direction * (SPEED * 2)
+		velocity = direction * (SPEED * 3)
 	if !player_in_range:
 		if time_since_last_change >= change_interval:
 			var angle = randf_range(0, 2 * PI)  # Zufälligen Winkel generieren
-			direction = Vector2(cos(angle), sin(angle))  # Berechne Richtung
+			direction = Vector2(cos(angle), sin(angle)) # Berechne Richtung
 			time_since_last_change = 0
-			velocity = direction * SPEED
-	
+			velocity = direction * SPEED	
+	velocity.normalized()
 	move_and_slide()
 	
 func received_damaged(atk):
 	hp = hp -  atk
 	update_hpBar()
 	if hp <= 0:
-		print("Dead")
 		queue_free()
 
 func _on_enemie_hitbox_body_exited(body: Node2D) -> void:
@@ -56,6 +54,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		player_in_range = false
 		target = body
 		body.received_damaged(atk)
+		body.pushback(position, pushback_strength)
 		
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:

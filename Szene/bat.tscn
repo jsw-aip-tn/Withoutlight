@@ -83,8 +83,8 @@ scale = Vector2(1.12727, 1.22671)
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_2l43x")
 
-[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_entered"]
