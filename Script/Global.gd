@@ -1,4 +1,4 @@
 extends Node
 
-var current_wave : int = 30
-var wood_stack: int = 30
+var current_wave : int = 0
+var wood_stack: int = 0
