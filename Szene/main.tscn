@@ -19,4 +19,4 @@ blend_mode = 1
 [node name="Global" parent="." instance=ExtResource("3_f4v26")]
 
 [node name="Bat" parent="." instance=ExtResource("4_yhv6a")]
-position = Vector2(151, 87)
+position = Vector2(175, 101)

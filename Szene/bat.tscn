@@ -10,9 +10,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
 size = Vector2(105, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
-size = Vector2(119, 76)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_wlrea"]
 animations = [{
 "frames": [{
@@ -35,6 +32,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2l43x"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
+size = Vector2(119, 76)
+
 [node name="Bat" type="Node2D"]
 light_mask = 7
 visibility_layer = 7
@@ -49,14 +49,6 @@ script = ExtResource("1_rx3w4")
 visible = false
 position = Vector2(-9.05991e-06, -2.38419e-06)
 shape = SubResource("RectangleShape2D_84b2s")
-
-[node name="enemie_hitbox" type="Area2D" parent="Bat"]
-position = Vector2(-9.53674e-06, -2.38419e-06)
-scale = Vector2(1.04209, -0.973596)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox"]
-position = Vector2(-2.38419e-07, 1.78814e-07)
-shape = SubResource("RectangleShape2D_jrc82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat"]
 position = Vector2(-9.41753e-06, -2.44379e-06)
@@ -83,9 +75,17 @@ scale = Vector2(1.12727, 1.22671)
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_2l43x")
 
-[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
-[connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
+[node name="enemie_hitbox" type="Area2D" parent="Bat"]
+position = Vector2(-9.53674e-06, -2.38419e-06)
+scale = Vector2(1.04209, -0.973596)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox"]
+position = Vector2(-2.38419e-07, 1.78814e-07)
+shape = SubResource("RectangleShape2D_jrc82")
+
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_exited"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
