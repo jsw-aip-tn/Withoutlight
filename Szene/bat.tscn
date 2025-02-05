@@ -10,20 +10,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
 size = Vector2(105, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
-size = Vector2(119, 76)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_wlrea"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_m22dl")
-}, {
 "duration": 1.0,
 "texture": ExtResource("1_wigmr")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_rdycs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m22dl")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_kppu8")
@@ -34,6 +31,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2l43x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
+size = Vector2(119, 76)
 
 [node name="Bat" type="Node2D"]
 light_mask = 7
@@ -50,6 +50,7 @@ visible = false
 position = Vector2(-9.05991e-06, -2.38419e-06)
 shape = SubResource("RectangleShape2D_84b2s")
 
+<<<<<<< HEAD
 [node name="enemy_hitbox" type="Area2D" parent="Bat"]
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
@@ -58,6 +59,8 @@ scale = Vector2(1.04209, -0.973596)
 position = Vector2(-2.38419e-07, 1.78814e-07)
 shape = SubResource("RectangleShape2D_jrc82")
 
+=======
+>>>>>>> 31789579d7af628083b3b19b1a7e43a125626e29
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat"]
 position = Vector2(-9.41753e-06, -2.44379e-06)
 sprite_frames = SubResource("SpriteFrames_wlrea")
@@ -84,9 +87,23 @@ scale = Vector2(1.12727, 1.22671)
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_2l43x")
 
+<<<<<<< HEAD
 [connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_exited" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
+=======
+[node name="enemie_hitbox" type="Area2D" parent="Bat"]
+position = Vector2(-9.53674e-06, -2.38419e-06)
+scale = Vector2(1.04209, -0.973596)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox"]
+position = Vector2(-2.38419e-07, 1.78814e-07)
+shape = SubResource("RectangleShape2D_jrc82")
+
+>>>>>>> 31789579d7af628083b3b19b1a7e43a125626e29
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_exited"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
