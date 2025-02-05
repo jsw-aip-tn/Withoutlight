@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=20 format=3 uid="uid://1qdi3c3eq1a2"]
 
 [ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_16.png" id="1_g65t4"]
 [ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_17.png" id="2_aq7f7"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bd0lctcswok71" path="res://Assets/Wolf/wolf-idle3.png" id="6_ih3r6"]
 [ext_resource type="Texture2D" uid="uid://cy7ssfbawdk0n" path="res://Assets/Wolf/wolf-idle2.png" id="7_jn6ay"]
 [ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/kisspng-sprite-2d-computer-graphics-game-african-wild-dog-ace-5ac721619ede23.7482898115229996496507.png" id="8_tee68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpe1x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
 atlas = ExtResource("1_g65t4")
@@ -78,31 +80,40 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1u4ol"]
+
 [node name="Wolf" type="Node2D"]
 
 [node name="Wolf" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf"]
+visible = false
+shape = SubResource("RectangleShape2D_vpe1x")
 
 [node name="enemy_hitbox" type="Area2D" parent="Wolf"]
-position = Vector2(-417, 2)
+scale = Vector2(1.042, -0.974)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wolf"]
-position = Vector2(-420, 1)
+position = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_di00u")
 animation = &"idle"
-frame = 3
-frame_progress = 0.104934
+frame_progress = 0.691845
 
 [node name="Timer" type="Timer" parent="Wolf"]
 wait_time = 2.0
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Wolf"]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = -4.0
+offset_top = -13.0
+offset_bottom = 14.0
+value = 50.0
+show_percentage = false
 
 [node name="search_area" type="Area2D" parent="Wolf"]
-position = Vector2(-416, 1)
+position = Vector2(-3, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/search_area"]
+position = Vector2(21, 25)
+scale = Vector2(-39.72, 26.23)
+shape = SubResource("CircleShape2D_1u4ol")

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var hp = 20
-var atk = 2
-const SPEED = 100.0
+var hp = 50
+var atk = 4
+const SPEED = 80.0
 var player_in_range = false
 var direction = Vector2()
 var time_since_last_change = 0
