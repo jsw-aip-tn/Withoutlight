@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceq4caiu3es4v"]
+[gd_scene load_steps=5 format=3 uid="uid://ceq4caiu3es4v"]
 
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Szene/player.tscn" id="1_ur571"]
 [ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Szene/global.tscn" id="3_f4v26"]
 [ext_resource type="PackedScene" uid="uid://bjif787o0f6fa" path="res://Szene/bat.tscn" id="4_yhv6a"]
-[ext_resource type="PackedScene" uid="uid://1qdi3c3eq1a2" path="res://Szene/wolf.tscn" id="5_yqfpg"]
 
 [node name="Game" type="Node"]
 
@@ -20,7 +19,4 @@ blend_mode = 1
 [node name="Global" parent="." instance=ExtResource("3_f4v26")]
 
 [node name="Bat" parent="." instance=ExtResource("4_yhv6a")]
-position = Vector2(151, 87)
-
-[node name="Wolf" parent="." instance=ExtResource("5_yqfpg")]
-position = Vector2(47, 120)
+position = Vector2(175, 101)

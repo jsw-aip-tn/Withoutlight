@@ -42,7 +42,6 @@ func spawn_wood():
 func _on_wave_timer_timeout() -> void:
 	wave_timer.stop()
 	start_wave()
-	print(Global.current_wave)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
