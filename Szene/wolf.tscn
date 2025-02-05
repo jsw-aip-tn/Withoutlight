@@ -1,10 +1,108 @@
-[gd_scene load_steps=2 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=18 format=3 uid="uid://1qdi3c3eq1a2"]
 
-[ext_resource type="SpriteFrames" path="res://Assets/Wolf/" id="1_u57dv"]
+[ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_16.png" id="1_g65t4"]
+[ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_17.png" id="2_aq7f7"]
+[ext_resource type="Texture2D" uid="uid://dtoexsw3kky24" path="res://Assets/Wolf/sprite_18.png" id="3_q8f11"]
+[ext_resource type="Texture2D" uid="uid://p13h5lo7x78v" path="res://Assets/Wolf/sprite_19.png" id="4_byvrg"]
+[ext_resource type="Texture2D" uid="uid://cty3np4h3f0d0" path="res://Assets/Wolf/wolf-idle4.png" id="5_sma7j"]
+[ext_resource type="Texture2D" uid="uid://bd0lctcswok71" path="res://Assets/Wolf/wolf-idle3.png" id="6_ih3r6"]
+[ext_resource type="Texture2D" uid="uid://cy7ssfbawdk0n" path="res://Assets/Wolf/wolf-idle2.png" id="7_jn6ay"]
+[ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/kisspng-sprite-2d-computer-graphics-game-african-wild-dog-ace-5ac721619ede23.7482898115229996496507.png" id="8_tee68"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
+atlas = ExtResource("1_g65t4")
+region = Rect2(0, 0, 127, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7y7i"]
+atlas = ExtResource("2_aq7f7")
+region = Rect2(0, 0, 132, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6rg"]
+atlas = ExtResource("3_q8f11")
+region = Rect2(0, 0, 147, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8x6p"]
+atlas = ExtResource("4_byvrg")
+region = Rect2(0, 0, 152, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3nst"]
+atlas = ExtResource("5_sma7j")
+region = Rect2(0, 0, 149, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxbbj"]
+atlas = ExtResource("6_ih3r6")
+region = Rect2(0, 0, 148, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi36n"]
+atlas = ExtResource("7_jn6ay")
+region = Rect2(0, 0, 148, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8256"]
+atlas = ExtResource("8_tee68")
+region = Rect2(0, 0, 148, 82)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_di00u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1cpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7y7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8x6p")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3nst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxbbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi36n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8256")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Wolf" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("1_u57dv")
-animation = &"Idle"
-frame_progress = 0.353721
+[node name="Wolf" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf"]
+
+[node name="enemy_hitbox" type="Area2D" parent="Wolf"]
+position = Vector2(-417, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wolf"]
+position = Vector2(-420, 1)
+sprite_frames = SubResource("SpriteFrames_di00u")
+animation = &"idle"
+frame = 3
+frame_progress = 0.104934
+
+[node name="Timer" type="Timer" parent="Wolf"]
+wait_time = 2.0
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Wolf"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="search_area" type="Area2D" parent="Wolf"]
+position = Vector2(-416, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/search_area"]
