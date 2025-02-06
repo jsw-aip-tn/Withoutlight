@@ -1,9 +1,9 @@
 [gd_scene load_steps=37 format=3 uid="uid://cf0fxa3ac7nhb"]
 
 [ext_resource type="Texture2D" uid="uid://cv0l1yvaxjpda" path="res://Assets/Charakter/adventurer-Sheet.png" id="1_upfeo"]
-[ext_resource type="Script" path="res://Script/player.gd" id="1_x6ic7"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_x6ic7"]
 [ext_resource type="Texture2D" uid="uid://b7og07wr1d60t" path="res://Assets/Charakter/adventurer-bow-Sheet.png" id="3_pq8sw"]
-[ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Szene/HPBar.tscn" id="4_1tvyj"]
+[ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="4_1tvyj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5pgxq"]
 atlas = ExtResource("1_upfeo")

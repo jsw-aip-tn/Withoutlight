@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3mb1kru28e3g"
-path="res://.godot/imported/sprite_16.png-be4ad8a1c9e201d2198ee20c2da4f045.ctex"
+uid="uid://6ih6xe5simi3"
+path="res://.godot/imported/wolf-idle1.png-da2bdd108560eb501bcc562da64f215f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Wolf/sprite_16.png"
-dest_files=["res://.godot/imported/sprite_16.png-be4ad8a1c9e201d2198ee20c2da4f045.ctex"]
+source_file="res://Assets/Wolf/wolf-idle1.png"
+dest_files=["res://.godot/imported/wolf-idle1.png-da2bdd108560eb501bcc562da64f215f.ctex"]
 
 [params]
 
