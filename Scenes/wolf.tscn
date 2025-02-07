@@ -81,7 +81,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1u4ol"]
-radius = 2.08195
+radius = 2.00984
 
 [node name="Wolf" type="Node2D"]
 
