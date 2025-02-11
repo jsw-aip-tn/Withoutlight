@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceq4caiu3es4v"]
+[gd_scene load_steps=6 format=3 uid="uid://ceq4caiu3es4v"]
 
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Scenes/player.tscn" id="1_ur571"]
+[ext_resource type="PackedScene" uid="uid://1qdi3c3eq1a2" path="res://Scenes/wolf.tscn" id="2_qmbj4"]
 [ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Scenes/global.tscn" id="3_f4v26"]
 [ext_resource type="PackedScene" uid="uid://bjif787o0f6fa" path="res://Scenes/bat.tscn" id="4_yhv6a"]
 
@@ -20,3 +21,6 @@ blend_mode = 1
 
 [node name="Bat" parent="." instance=ExtResource("4_yhv6a")]
 position = Vector2(175, 101)
+
+[node name="Wolf" parent="." instance=ExtResource("2_qmbj4")]
+position = Vector2(78, 222)
