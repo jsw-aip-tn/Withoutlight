@@ -15,8 +15,8 @@ var animation_player : AnimationPlayer
 var light_nearby = false
 var torch_nearby: int
 
-const TORCH = preload("res://Szene/torch.tscn")
-const arrow_path = preload("res://Szene/arrow.tscn")
+const TORCH = preload("res://Scenes/torch.tscn")
+const arrow_path = preload("res://Scenes/arrow.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
