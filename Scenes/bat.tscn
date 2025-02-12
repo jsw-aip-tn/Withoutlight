@@ -77,10 +77,10 @@ offset_bottom = 48.0
 scale = Vector2(5.68888, 3.65064)
 value = 20.0
 
-[node name="SearchArea" type="Area2D" parent="Bat"]
+[node name="search_area" type="Area2D" parent="Bat"]
 scale = Vector2(1.12727, 1.22671)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/SearchArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/search_area"]
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_2l43x")
 
@@ -92,12 +92,12 @@ scale = Vector2(1.04209, -0.973596)
 position = Vector2(-2.38419e-07, 1.78814e-07)
 shape = SubResource("RectangleShape2D_jrc82")
 
-[connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
+[connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_entered"]
-[connection signal="body_exited" from="Bat/SearchArea" to="Bat" method="_on_search_area_body_exited"]
-[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Bat/search_area" to="Bat" method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="Bat/search_area" to="Bat" method="_on_search_area_body_exited"]
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]

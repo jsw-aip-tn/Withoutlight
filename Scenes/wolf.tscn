@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=21 format=3 uid="uid://1qdi3c3eq1a2"]
 
 [ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_1.png" id="1_cd1uv"]
 [ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_2.png" id="2_fhgf8"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/wolf-idle1.png" id="8_a54wj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpe1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dar03"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
 atlas = ExtResource("1_cd1uv")
@@ -93,6 +95,9 @@ shape = SubResource("RectangleShape2D_vpe1x")
 
 [node name="enemy_hitbox" type="Area2D" parent="Wolf"]
 scale = Vector2(1.042, -0.974)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/enemy_hitbox"]
+shape = SubResource("RectangleShape2D_dar03")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wolf"]
 position = Vector2(1, -1)
