@@ -29,21 +29,21 @@ region = Rect2(0, 0, 147, 103)
 atlas = ExtResource("4_a0lmp")
 region = Rect2(0, 0, 152, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u3nst"]
-atlas = ExtResource("5_s824n")
-region = Rect2(0, 0, 149, 83)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wxbbj"]
-atlas = ExtResource("6_bm4ae")
-region = Rect2(0, 0, 148, 83)
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8256"]
+atlas = ExtResource("8_a54wj")
+region = Rect2(0, 0, 148, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi36n"]
 atlas = ExtResource("7_t1qfc")
 region = Rect2(0, 0, 148, 84)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d8256"]
-atlas = ExtResource("8_a54wj")
-region = Rect2(0, 0, 148, 82)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxbbj"]
+atlas = ExtResource("6_bm4ae")
+region = Rect2(0, 0, 148, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3nst"]
+atlas = ExtResource("5_s824n")
+region = Rect2(0, 0, 149, 83)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_di00u"]
 animations = [{
@@ -66,16 +66,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u3nst")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wxbbj")
+"texture": SubResource("AtlasTexture_d8256")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bi36n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d8256")
+"texture": SubResource("AtlasTexture_wxbbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3nst")
 }],
 "loop": true,
 "name": &"idle",
@@ -105,7 +105,8 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_di00u")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.595281
+frame_progress = 0.403157
+speed_scale = 0.815
 
 [node name="Timer" type="Timer" parent="Wolf"]
 wait_time = 2.0

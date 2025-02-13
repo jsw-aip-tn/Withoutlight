@@ -6,7 +6,7 @@ const SPEED = 80.0
 var player_in_range = false
 var direction = Vector2()
 var time_since_last_change = 0
-var change_interval = 0.5  # Alle 0,5 Sekunden die Richtung ändern
+var change_interval = 1.0  # Alle ... Sekunden die Richtung ändern
 var target
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
