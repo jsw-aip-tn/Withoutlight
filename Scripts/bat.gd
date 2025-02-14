@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var maxhp = 20
+var maxhp = 50
 var hp = 20
-var atk = 2
+var atk = 4
 var SPEED = 0.0
 var pushback_strength  = 0.5
 var player_in_range = false

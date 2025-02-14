@@ -1,0 +1,146 @@
+[gd_scene load_steps=23 format=3 uid="uid://ba2um115u2unk"]
+
+[ext_resource type="Script" path="res://Scripts/bat.gd" id="1_ht26v"]
+[ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_1.png" id="2_86g4q"]
+[ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_2.png" id="3_3weds"]
+[ext_resource type="Texture2D" uid="uid://dtoexsw3kky24" path="res://Assets/Wolf/sprite_3.png" id="4_h3unq"]
+[ext_resource type="Texture2D" uid="uid://p13h5lo7x78v" path="res://Assets/Wolf/sprite_4.png" id="5_mblwm"]
+[ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPbar.tscn" id="6_2fsyp"]
+[ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/wolf-idle1.png" id="6_3jlxg"]
+[ext_resource type="Texture2D" uid="uid://cy7ssfbawdk0n" path="res://Assets/Wolf/wolf-idle2.png" id="7_ebw2r"]
+[ext_resource type="Texture2D" uid="uid://bd0lctcswok71" path="res://Assets/Wolf/wolf-idle3.png" id="8_5i1e2"]
+[ext_resource type="Texture2D" uid="uid://cty3np4h3f0d0" path="res://Assets/Wolf/wolf-idle4.png" id="9_ev4uu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
+size = Vector2(105, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
+size = Vector2(119, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
+atlas = ExtResource("2_86g4q")
+region = Rect2(0, 0, 127, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7y7i"]
+atlas = ExtResource("3_3weds")
+region = Rect2(0, 0, 132, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6rg"]
+atlas = ExtResource("4_h3unq")
+region = Rect2(0, 0, 147, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8x6p"]
+atlas = ExtResource("5_mblwm")
+region = Rect2(0, 0, 152, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8256"]
+atlas = ExtResource("6_3jlxg")
+region = Rect2(0, 0, 148, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi36n"]
+atlas = ExtResource("7_ebw2r")
+region = Rect2(0, 0, 148, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxbbj"]
+atlas = ExtResource("8_5i1e2")
+region = Rect2(0, 0, 148, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3nst"]
+atlas = ExtResource("9_ev4uu")
+region = Rect2(0, 0, 149, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3ciy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1cpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7y7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8x6p")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8256")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi36n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxbbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3nst")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l43x"]
+
+[node name="Wolf" type="Node2D"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(1.90735e-06, 4.76837e-07)
+scale = Vector2(0.2, 0.2)
+
+[node name="Bat" type="CharacterBody2D" parent="."]
+floor_constant_speed = true
+script = ExtResource("1_ht26v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
+visible = false
+position = Vector2(-9.05991e-06, -2.38419e-06)
+shape = SubResource("RectangleShape2D_84b2s")
+
+[node name="enemy_hitbox" type="Area2D" parent="Bat"]
+position = Vector2(-9.53674e-06, -2.38419e-06)
+scale = Vector2(1.04209, -0.973596)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemy_hitbox"]
+position = Vector2(-2.38419e-07, 1.78814e-07)
+shape = SubResource("RectangleShape2D_jrc82")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat"]
+position = Vector2(1, -1)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_i3ciy")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 0.815
+
+[node name="Timer" type="Timer" parent="Bat"]
+wait_time = 2.0
+autostart = true
+
+[node name="ProgressBar2" parent="Bat" instance=ExtResource("6_2fsyp")]
+offset_left = -55.0
+offset_top = 45.0
+offset_right = -36.0
+offset_bottom = 48.0
+scale = Vector2(5.68888, 3.65064)
+value = 20.0
+
+[node name="search_area" type="Area2D" parent="Bat"]
+scale = Vector2(1.12727, 1.22671)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/search_area"]
+scale = Vector2(-40.29, 26.23)
+shape = SubResource("CircleShape2D_2l43x")
+
+[connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
+[connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
+[connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Bat/search_area" to="Bat" method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="Bat/search_area" to="Bat" method="_on_search_area_body_exited"]
