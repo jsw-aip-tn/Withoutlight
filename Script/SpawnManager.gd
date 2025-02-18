@@ -19,7 +19,7 @@ func start_wave():
 	spawn_monsters()
 	spawn_wood()
 	wave_timer.start()
-	
+	print(Global.current_wave)
 
 func spawn_monsters():
 	var bat_spawn_points = [$SpawnPoints/BatSpawn1, $SpawnPoints/BatSpawn2, $SpawnPoints/BatSpawn3, $SpawnPoints/BatSpawn4, $SpawnPoints/BatSpawn5]
@@ -43,9 +43,6 @@ func _on_wave_timer_timeout() -> void:
 	wave_timer.stop()
 	start_wave()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 #func prepare_spawn(type, multiplier, mob_spawns):
 	#var mob_amount = float(current_wave) * multiplier

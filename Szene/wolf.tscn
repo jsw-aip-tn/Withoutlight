@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=21 format=3 uid="uid://1qdi3c3eq1a2"]
 
+[ext_resource type="Script" path="res://Script/wolf.gd" id="1_b1h6y"]
 [ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_16.png" id="1_g65t4"]
 [ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_17.png" id="2_aq7f7"]
 [ext_resource type="Texture2D" uid="uid://dtoexsw3kky24" path="res://Assets/Wolf/sprite_18.png" id="3_q8f11"]
@@ -8,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bd0lctcswok71" path="res://Assets/Wolf/wolf-idle3.png" id="6_ih3r6"]
 [ext_resource type="Texture2D" uid="uid://cy7ssfbawdk0n" path="res://Assets/Wolf/wolf-idle2.png" id="7_jn6ay"]
 [ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/kisspng-sprite-2d-computer-graphics-game-african-wild-dog-ace-5ac721619ede23.7482898115229996496507.png" id="8_tee68"]
+[ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Szene/HPBar.tscn" id="10_bapga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntpwb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
 atlas = ExtResource("1_g65t4")
@@ -74,35 +78,40 @@ animations = [{
 "texture": SubResource("AtlasTexture_d8256")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"walk",
 "speed": 5.0
 }]
 
 [node name="Wolf" type="Node2D"]
 
 [node name="Wolf" type="CharacterBody2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_b1h6y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf"]
+scale = Vector2(7.07093, 3.62449)
+shape = SubResource("RectangleShape2D_ntpwb")
 
 [node name="enemy_hitbox" type="Area2D" parent="Wolf"]
-position = Vector2(-417, 2)
+position = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wolf"]
-position = Vector2(-420, 1)
+position = Vector2(-2, -2)
 sprite_frames = SubResource("SpriteFrames_di00u")
-animation = &"idle"
-frame = 3
-frame_progress = 0.104934
+animation = &"walk"
+autoplay = "walk"
 
 [node name="Timer" type="Timer" parent="Wolf"]
 wait_time = 2.0
 autostart = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Wolf"]
-offset_right = 4.0
-offset_bottom = 27.0
-
 [node name="search_area" type="Area2D" parent="Wolf"]
-position = Vector2(-416, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/search_area"]
+
+[node name="ProgressBar2" parent="Wolf" instance=ExtResource("10_bapga")]
+offset_left = -46.6667
+offset_top = -63.3333
+offset_right = 46.3333
+offset_bottom = -56.3333
