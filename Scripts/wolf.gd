@@ -15,11 +15,7 @@ func _ready() -> void:
 	update_hpBar()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	movement(delta)
-	
-func update_hpBar():
-	progress_bar.update_health(hp, maxhp)
-	
+	movement(delta)	
 
 func enemy():
 	pass
