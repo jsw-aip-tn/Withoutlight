@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var maxhp = 20
+var maxhp = 50
 var hp = 20
 var atk = 2
 var SPEED = 50

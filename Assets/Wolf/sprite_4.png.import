@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ih6xe5simi3"
-path="res://.godot/imported/kisspng-sprite-2d-computer-graphics-game-african-wild-dog-ace-5ac721619ede23.7482898115229996496507.png-6e6215f5fcf80900add04c1134c7f84f.ctex"
+uid="uid://p13h5lo7x78v"
+path="res://.godot/imported/sprite_4.png-205a016b7b85e62034cc966339d0ca9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Wolf/kisspng-sprite-2d-computer-graphics-game-african-wild-dog-ace-5ac721619ede23.7482898115229996496507.png"
-dest_files=["res://.godot/imported/kisspng-sprite-2d-computer-graphics-game-african-wild-dog-ace-5ac721619ede23.7482898115229996496507.png-6e6215f5fcf80900add04c1134c7f84f.ctex"]
+source_file="res://Assets/Wolf/sprite_4.png"
+dest_files=["res://.godot/imported/sprite_4.png-205a016b7b85e62034cc966339d0ca9e.ctex"]
 
 [params]
 

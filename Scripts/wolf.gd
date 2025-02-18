@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
-var maxhp = 20
-var hp = 20
-var atk = 2
-const SPEED = 100.0
+var hp = 50
+var atk = 4
+const SPEED = 80.0
 var player_in_range = false
 var direction = Vector2()
 var time_since_last_change = 0
-var change_interval = 0.5  # Alle 0,5 Sekunden die Richtung ändern
+var change_interval = 1.0  # Alle ... Sekunden die Richtung ändern
 var target
 @onready var progress_bar: ProgressBar = $ProgressBar2
 

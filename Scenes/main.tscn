@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceq4caiu3es4v"]
+
+[ext_resource type="Script" path="res://Scripts/GameUI.gd" id="1_36ddd"]
+[ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
+[ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Scenes/player.tscn" id="1_ur571"]
+[ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Scenes/global.tscn" id="3_f4v26"]
+[ext_resource type="PackedScene" uid="uid://1qdi3c3eq1a2" path="res://Scenes/wolf.tscn" id="5_33pyg"]
+[ext_resource type="PackedScene" uid="uid://ba2um115u2unk" path="res://Scenes/wolf2.tscn" id="6_glp4t"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_36ddd")
+
+[node name="Map" parent="." instance=ExtResource("1_kms4s")]
+position = Vector2(96, 432)
+
+[node name="Player" parent="." instance=ExtResource("1_ur571")]
+position = Vector2(55, 94)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1
+
+[node name="Global" parent="." instance=ExtResource("3_f4v26")]
+
+[node name="Bat" parent="." instance=ExtResource("4_yhv6a")]
+position = Vector2(175, 101)
+
+[node name="Wolf" parent="." instance=ExtResource("2_qmbj4")]
+position = Vector2(78, 222)
+
+[node name="Wolf2" parent="." instance=ExtResource("6_glp4t")]
+position = Vector2(40, 126)

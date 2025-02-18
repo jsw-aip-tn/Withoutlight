@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://blvfulmvfhp0v"]
 
 [ext_resource type="Script" path="res://titlescreen.gd" id="1_bx7fx"]
-[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="1_hlsoi"]
+[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://Fonts/Tiny5-Regular.ttf" id="1_hlsoi"]
 
 [node name="titlescreen" type="Control"]
 layout_mode = 3

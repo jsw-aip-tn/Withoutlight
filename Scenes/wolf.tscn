@@ -1,0 +1,129 @@
+[gd_scene load_steps=21 format=3 uid="uid://1qdi3c3eq1a2"]
+
+[ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_1.png" id="1_cd1uv"]
+[ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_2.png" id="2_fhgf8"]
+[ext_resource type="Texture2D" uid="uid://dtoexsw3kky24" path="res://Assets/Wolf/sprite_3.png" id="3_2dbmx"]
+[ext_resource type="Texture2D" uid="uid://p13h5lo7x78v" path="res://Assets/Wolf/sprite_4.png" id="4_a0lmp"]
+[ext_resource type="Texture2D" uid="uid://cty3np4h3f0d0" path="res://Assets/Wolf/wolf-idle4.png" id="5_s824n"]
+[ext_resource type="Texture2D" uid="uid://bd0lctcswok71" path="res://Assets/Wolf/wolf-idle3.png" id="6_bm4ae"]
+[ext_resource type="Texture2D" uid="uid://cy7ssfbawdk0n" path="res://Assets/Wolf/wolf-idle2.png" id="7_t1qfc"]
+[ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/wolf-idle1.png" id="8_a54wj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpe1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dar03"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
+atlas = ExtResource("1_cd1uv")
+region = Rect2(0, 0, 127, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7y7i"]
+atlas = ExtResource("2_fhgf8")
+region = Rect2(0, 0, 132, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6rg"]
+atlas = ExtResource("3_2dbmx")
+region = Rect2(0, 0, 147, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8x6p"]
+atlas = ExtResource("4_a0lmp")
+region = Rect2(0, 0, 152, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8256"]
+atlas = ExtResource("8_a54wj")
+region = Rect2(0, 0, 148, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi36n"]
+atlas = ExtResource("7_t1qfc")
+region = Rect2(0, 0, 148, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxbbj"]
+atlas = ExtResource("6_bm4ae")
+region = Rect2(0, 0, 148, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3nst"]
+atlas = ExtResource("5_s824n")
+region = Rect2(0, 0, 149, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_di00u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1cpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7y7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8x6p")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8256")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi36n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxbbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3nst")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1u4ol"]
+radius = 2.00984
+
+[node name="Wolf" type="Node2D"]
+
+[node name="Wolf" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf"]
+visible = false
+shape = SubResource("RectangleShape2D_vpe1x")
+
+[node name="enemy_hitbox" type="Area2D" parent="Wolf"]
+scale = Vector2(1.042, -0.974)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/enemy_hitbox"]
+shape = SubResource("RectangleShape2D_dar03")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wolf"]
+position = Vector2(1, -1)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_di00u")
+animation = &"attack"
+autoplay = "idle"
+frame_progress = 0.0371147
+speed_scale = 0.815
+
+[node name="Timer" type="Timer" parent="Wolf"]
+wait_time = 2.0
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Wolf"]
+visible = false
+offset_left = -4.0
+offset_top = -13.0
+offset_bottom = 14.0
+value = 50.0
+show_percentage = false
+
+[node name="search_area" type="Area2D" parent="Wolf"]
+position = Vector2(-3, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/search_area"]
+position = Vector2(6, 2)
+scale = Vector2(-39.72, 26.23)
+shape = SubResource("CircleShape2D_1u4ol")
