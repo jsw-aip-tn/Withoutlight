@@ -18,7 +18,6 @@ var torch_nearby: int
 const TORCH = preload("res://Scenes/torch.tscn")
 const arrow_path = preload("res://Scenes/arrow.tscn")
 @onready var arrow_spawn_point: Node2D = $AnimatedSprite2D/arrowSpawnPoint
-
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cooldown_timer: Timer = $atk_cooldown
 @onready var progress_bar: ProgressBar = $ProgressBar2
@@ -31,7 +30,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	movement()
 	place_torch()
-	#enemy_attack()
 	
 	if hp <= 0:
 		player_alive = false
@@ -146,4 +144,3 @@ func _on_atk_cooldown_timeout() -> void:
 	fire(facing)
 	range_attack_triggered = false
 	cooldown_timer.stop()
-	#atk_cooldown = true
