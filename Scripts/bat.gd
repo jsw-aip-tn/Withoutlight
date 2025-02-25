@@ -10,7 +10,7 @@ var direction = Vector2()
 var time_since_last_change = 0
 var change_interval = 2  # Alle 2 Sekunden die Richtung ändern
 var target
-var target_direction
+var target_direction: Vector2 = Vector2.ZERO
 var dash_speed = 5
 var is_dashing = false
 @onready var progress_bar: ProgressBar = $ProgressBar2
@@ -39,11 +39,8 @@ func movement(delta: float):
 		move_and_slide()
 	if  player_in_range and is_dashing:
 		is_dashing = true
-		target_direction = (target.position - position).normalized()
+		target_direction = (target.global_position - global_position).normalized()
 		velocity = target_direction * SPEED * dash_speed 
-		print(target.position)
-		print(position)
-		print(target_direction)
 		move_and_slide()
 	
 func received_damaged(atk):

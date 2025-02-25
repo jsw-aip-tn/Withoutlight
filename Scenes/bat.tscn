@@ -46,7 +46,6 @@ floor_constant_speed = true
 script = ExtResource("1_rx3w4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
-visible = false
 position = Vector2(-9.05991e-06, -2.38419e-06)
 shape = SubResource("RectangleShape2D_84b2s")
 

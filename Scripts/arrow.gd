@@ -20,8 +20,6 @@ func _physics_process(delta: float) -> void:
 	if !found_target:
 		velocity = (Vector2.RIGHT * SPEED).rotated(rota)
 	else:   
-		 # Wenn das Ziel gefunden wurde, wird die Richtung nicht mehr neu berechnet
-		# Nur den gespeicherten Vektor verwenden
 		velocity = direction_to_target.normalized() * SPEED
 		
 		# Optional: Rotieren des Pfeils in Richtung der Bewegung
