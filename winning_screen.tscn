@@ -1,0 +1,153 @@
+[gd_scene load_steps=13 format=3 uid="uid://cerfb11735c1y"]
+
+[ext_resource type="Script" path="res://winning_screen.gd" id="1_7wj2c"]
+[ext_resource type="Texture2D" uid="uid://bi3c6jbim0een" path="res://background/Winning_screen.png" id="1_8nh51"]
+[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="2_fpigi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_imfcn"]
+texture = ExtResource("1_8nh51")
+modulate_color = Color(0.800491, 0.800491, 0.800491, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mka1o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2rt5"]
+bg_color = Color(0.0883689, 0.639543, 0.417715, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.0196078, 0.254902, 0.156863, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inhx5"]
+bg_color = Color(0.0196078, 0.254902, 0.156863, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.0196078, 0.254902, 0.156863, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyaxc"]
+bg_color = Color(0.145098, 0.960784, 0.635294, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.0196078, 0.254902, 0.156863, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnooo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fpbl"]
+bg_color = Color(0.573182, 0.165714, 0.126181, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wmug"]
+bg_color = Color(0.39463, 0.101584, 0.0735476, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wy28"]
+bg_color = Color(0.8, 0.262745, 0.207843, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_7wj2c")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_imfcn")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -279.0
+offset_right = 300.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.144553, 0.962256, 0.636867, 1)
+theme_override_colors/font_shadow_color = Color(0.019007, 0.256216, 0.157475, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("2_fpigi")
+theme_override_font_sizes/font_size = 150
+text = "You Win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = 12.0
+offset_right = 163.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fpigi")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mka1o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s2rt5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_inhx5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xyaxc")
+text = "Again"
+
+[node name="Button2" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = 111.0
+offset_right = 162.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fpigi")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pnooo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3fpbl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6wmug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2wy28")
+text = "Exit"
+
+[connection signal="pressed" from="Button" to="." method="_on_again_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_exit_pressed"]
