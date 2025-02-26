@@ -89,6 +89,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1114.0
+offset_top = 554.0
+offset_right = 1114.0
+offset_bottom = 554.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2vin7")
@@ -180,14 +184,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(56, 33)
 offset = Vector2(5, 5)
 anchor_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 3860
+limit_bottom = 1800
 position_smoothing_speed = 10.0
 rotation_smoothing_speed = 10.0
 script = ExtResource("4_fvkuo")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Camera2D"]
+visible = false
 position = Vector2(-5, 5)
 blend_mode = 1
 
