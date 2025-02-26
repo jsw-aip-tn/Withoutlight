@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmavvdwhen53t"]
+[gd_scene load_steps=13 format=3 uid="uid://cndxg5jx0awad"]
 
-[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="1_8g0lr"]
-[ext_resource type="Script" path="res://game_over.gd" id="1_ssqvl"]
-[ext_resource type="Texture2D" uid="uid://6g6tvhp2f1du" path="res://background/Game over screen.png" id="1_tw46k"]
+[ext_resource type="Script" path="res://Scripts/ScreensScripts/game_over.gd" id="1_a0ob0"]
+[ext_resource type="Texture2D" uid="uid://6g6tvhp2f1du" path="res://background/Game over screen.png" id="2_lqlxs"]
+[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="3_etrqn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdqc6"]
-texture = ExtResource("1_tw46k")
+texture = ExtResource("2_lqlxs")
 modulate_color = Color(0.521141, 0.521141, 0.521141, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2lu2b"]
@@ -73,7 +73,7 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
 [node name="game_over" type="CanvasLayer"]
-script = ExtResource("1_ssqvl")
+script = ExtResource("1_a0ob0")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -98,7 +98,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.705954, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.254902, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 10
-theme_override_fonts/font = ExtResource("1_8g0lr")
+theme_override_fonts/font = ExtResource("3_etrqn")
 theme_override_font_sizes/font_size = 150
 text = "Game Over"
 horizontal_alignment = 1
@@ -120,7 +120,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_8g0lr")
+theme_override_fonts/font = ExtResource("3_etrqn")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2lu2b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ejbuc")
@@ -144,7 +144,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_8g0lr")
+theme_override_fonts/font = ExtResource("3_etrqn")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s534s")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7pa1v")

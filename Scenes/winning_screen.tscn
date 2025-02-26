@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cerfb11735c1y"]
+[gd_scene load_steps=13 format=3 uid="uid://dcxshbfqf1n1i"]
 
-[ext_resource type="Script" path="res://winning_screen.gd" id="1_7wj2c"]
-[ext_resource type="Texture2D" uid="uid://bi3c6jbim0een" path="res://background/Winning_screen.png" id="1_8nh51"]
-[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="2_fpigi"]
+[ext_resource type="Script" path="res://Scripts/ScreensScripts/winning_screen.gd" id="1_5rtdw"]
+[ext_resource type="Texture2D" uid="uid://bi3c6jbim0een" path="res://background/Winning_screen.png" id="2_fk1pf"]
+[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="3_weoa1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_imfcn"]
-texture = ExtResource("1_8nh51")
+texture = ExtResource("2_fk1pf")
 modulate_color = Color(0.800491, 0.800491, 0.800491, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mka1o"]
@@ -70,7 +70,7 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_7wj2c")
+script = ExtResource("1_5rtdw")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -95,7 +95,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.144553, 0.962256, 0.636867, 1)
 theme_override_colors/font_shadow_color = Color(0.019007, 0.256216, 0.157475, 1)
 theme_override_constants/shadow_offset_y = 10
-theme_override_fonts/font = ExtResource("2_fpigi")
+theme_override_fonts/font = ExtResource("3_weoa1")
 theme_override_font_sizes/font_size = 150
 text = "You Win"
 horizontal_alignment = 1
@@ -117,7 +117,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_fpigi")
+theme_override_fonts/font = ExtResource("3_weoa1")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mka1o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s2rt5")
@@ -141,7 +141,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_fpigi")
+theme_override_fonts/font = ExtResource("3_weoa1")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pnooo")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3fpbl")

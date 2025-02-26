@@ -22,8 +22,6 @@ const arrow_path = preload("res://Scenes/arrow.tscn")
 @onready var cooldown_timer: Timer = $atk_cooldown
 @onready var progress_bar: ProgressBar = $ProgressBar2
 
-
-
 func _ready() -> void:
 	update_hpBar()
 
@@ -98,7 +96,6 @@ func animation():
 
 func fire(dir : Vector2):
 	var arrow = arrow_path.instantiate()
-	print(dir)
 	if range_attack_triggered:
 		arrow.pos = $AnimatedSprite2D/arrowSpawnPoint.global_position
 		arrow.rota = deg_to_rad((dir.x*90)-90) 
@@ -122,7 +119,6 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 func received_damaged(atk):
 	hp = hp -  atk
 	update_hpBar()
-	print(hp)
 	if hp >= 0:
 		player_alive = false
 #
