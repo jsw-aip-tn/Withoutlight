@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dcxshbfqf1n1i"]
 
-[ext_resource type="Script" path="res://Scripts/ScreensScripts/winning_screen.gd" id="1_5rtdw"]
+[ext_resource type="Script" path="res://Scripts/ScreensMenuScripts/winning_screen.gd" id="1_5rtdw"]
 [ext_resource type="Texture2D" uid="uid://bi3c6jbim0een" path="res://background/Winning_screen.png" id="2_fk1pf"]
 [ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="3_weoa1"]
 

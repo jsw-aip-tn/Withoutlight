@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cndxg5jx0awad"]
 
-[ext_resource type="Script" path="res://Scripts/ScreensScripts/game_over.gd" id="1_a0ob0"]
+[ext_resource type="Script" path="res://Scripts/ScreensMenuScripts/game_over.gd" id="1_a0ob0"]
 [ext_resource type="Texture2D" uid="uid://6g6tvhp2f1du" path="res://background/Game over screen.png" id="2_lqlxs"]
 [ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="3_etrqn"]
 
