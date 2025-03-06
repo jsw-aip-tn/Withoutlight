@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceq4caiu3es4v"]
+[gd_scene load_steps=7 format=3 uid="uid://ceq4caiu3es4v"]
 
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="1_36ddd"]
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Scenes/player.tscn" id="1_ur571"]
 [ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Scenes/global.tscn" id="3_f4v26"]
 [ext_resource type="PackedScene" uid="uid://bjif787o0f6fa" path="res://Scenes/bat.tscn" id="5_jhwgr"]
+[ext_resource type="PackedScene" uid="uid://by2s5ufovnnrv" path="res://Scenes/spider_test.tscn" id="6_x78r6"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_36ddd")
@@ -16,9 +17,14 @@ position = Vector2(96, 432)
 position = Vector2(189, 129)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 blend_mode = 1
 
 [node name="Global" parent="." instance=ExtResource("3_f4v26")]
 
 [node name="Bat" parent="." instance=ExtResource("5_jhwgr")]
 position = Vector2(91, 83)
+
+[node name="SpiderTest" parent="." instance=ExtResource("6_x78r6")]
+position = Vector2(94, 326)
+scale = Vector2(0.697642, 0.747861)
