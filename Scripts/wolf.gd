@@ -29,21 +29,23 @@ func update_hpBar():
 	
 func movement(delta: float):
 	time_since_last_change += delta
-	if player_in_range:
-		var target_direction = target.position - position  # Vektor vom Gegner zum Spieler
-		direction = target_direction.normalized()
-	else:
+	if !player_in_range and !is_dashing:
 		if time_since_last_change >= change_interval:
 			var angle = randf_range(0, 2 * PI)  # Zufälligen Winkel generieren
-			direction = Vector2(cos(angle), sin(angle))  # Berechne Richtung
-			time_since_last_change = 0		
-	velocity = direction * SPEED 
-	move_and_slide()
+			direction = Vector2(cos(angle), sin(angle)) # Berechne Richtung
+			time_since_last_change = 0
+			velocity = direction.normalized() * SPEED	
+		move_and_slide()
+	if  player_in_range and is_dashing:
+		is_dashing = true
+		target_direction = (target.global_position - global_position).normalized()
+		velocity = target_direction * SPEED * dash_speed 
+		move_and_slide()
 	
 func received_damaged(atk):
 	hp = hp -  atk
+	update_hpBar()
 	if hp <= 0:
-		print("Dead")
 		queue_free()
 
 func _on_enemie_hitbox_body_exited(body: Node2D) -> void:

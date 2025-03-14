@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=23 format=3 uid="uid://1qdi3c3eq1a2"]
 
 [ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_1.png" id="1_cd1uv"]
 [ext_resource type="Script" path="res://Scripts/wolf.gd" id="1_hkng7"]
@@ -87,9 +87,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1u4ol"]
 radius = 2.00984
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5ac4"]
-size = Vector2(119, 76)
-
 [node name="Wolf" type="Node2D"]
 
 [node name="Wolf" type="CharacterBody2D" parent="."]
@@ -132,16 +129,16 @@ position = Vector2(3, 0)
 scale = Vector2(-39.72, 26.23)
 shape = SubResource("CircleShape2D_1u4ol")
 
-[node name="enemie_hitbox" type="Area2D" parent="Wolf"]
-position = Vector2(-9.53674e-06, -2.38419e-06)
-scale = Vector2(1.04209, -0.973596)
+[node name="enemy_hitbox2" type="Area2D" parent="Wolf"]
+scale = Vector2(1.042, -0.974)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/enemie_hitbox"]
-position = Vector2(-2.38419e-07, 1.78814e-07)
-shape = SubResource("RectangleShape2D_b5ac4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/enemy_hitbox2"]
+shape = SubResource("RectangleShape2D_dar03")
 
 [connection signal="body_entered" from="Wolf/enemy_hitbox" to="Wolf" method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="Wolf/enemy_hitbox" to="Wolf" method="_on_enemy_hitbox_body_exited"]
 [connection signal="timeout" from="Wolf/Timer" to="Wolf" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Wolf/search_area" to="Wolf" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="Wolf/search_area" to="Wolf" method="_on_search_area_body_exited"]
+[connection signal="body_entered" from="Wolf/enemy_hitbox2" to="Wolf" method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="Wolf/enemy_hitbox2" to="Wolf" method="_on_enemy_hitbox_body_exited"]
