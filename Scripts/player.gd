@@ -21,6 +21,7 @@ const arrow_path = preload("res://Scenes/arrow.tscn")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cooldown_timer: Timer = $atk_cooldown
 @onready var progress_bar: ProgressBar = $ProgressBar2
+@onready var game: Node = $".."
 
 func _ready() -> void:
 	update_hpBar()
@@ -119,9 +120,11 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 func received_damaged(atk):
 	hp = hp -  atk
 	update_hpBar()
-	if hp >= 0:
+	if hp <= 0:
 		player_alive = false
-#
+		game.GameOver()
+
+
 func pushback(enemy_position: Vector2, pushback_strength):
 	var pushback_direction = (position - enemy_position)  
 	velocity = pushback_direction * pushback_strength  
