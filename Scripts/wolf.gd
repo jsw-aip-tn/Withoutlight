@@ -8,10 +8,10 @@ var pushback_strength  = 0.5
 var player_in_range = false
 var direction = Vector2()
 var time_since_last_change = 0
-var change_interval = 2  # Alle 2 Sekunden die Richtung ändern
+var change_interval = 5  # Alle X Sekunden die Richtung ändern
 var target
 var target_direction: Vector2 = Vector2.ZERO
-var dash_speed = 5
+var dash_speed = 4
 var is_dashing = false
 @onready var progress_bar: ProgressBar = $ProgressBar2
 
