@@ -3,7 +3,7 @@ var shader_material : ShaderMaterial
 
 func _ready():
 	# Get the ShaderMaterial from the Control node (the 'material' property)
-	shader_material = $Panel/ColorRect.material
+	shader_material = $ColorRect.material
 	mouse_filter = MOUSE_FILTER_PASS
 
 

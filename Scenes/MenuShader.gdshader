@@ -3,6 +3,9 @@ shader_type canvas_item;
 uniform vec2 mouse_position; // The normalized mouse position (from 0.0 to 1.0)
 uniform float pixel_size : hint_range(1.0, 50.0) = 5.0; // The pixel block size (larger = more pixelated)
 uniform float threshold : hint_range(0.0, 500.0) = 150.0; // The threshold for the mouse effect
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
 
 void fragment() {
    // Get normalized pixel coordinates (from 0.0 to 1.0)
@@ -26,4 +29,10 @@ void fragment() {
 
     // Output the final color, with alpha of 1.0 (completely opaque)
    COLOR = vec4(col, dist < threshold ? 0.0 : 1.0);
+	// Called for every pixel the material is visible on.
 }
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}

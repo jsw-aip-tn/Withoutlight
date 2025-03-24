@@ -10,12 +10,6 @@
 texture = ExtResource("2_r0fkj")
 modulate_color = Color(0.843184, 0.843184, 0.843184, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xykxp"]
-shader = ExtResource("1_c04yo")
-shader_parameter/mouse_position = null
-shader_parameter/pixel_size = 5.0
-shader_parameter/threshold = 150.0
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uottg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rokxj"]
@@ -80,6 +74,12 @@ shadow_color = Color(0, 0, 0, 0.215686)
 shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xykxp"]
+shader = ExtResource("1_c04yo")
+shader_parameter/mouse_position = null
+shader_parameter/pixel_size = 5.0
+shader_parameter/threshold = 150.0
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -91,6 +91,7 @@ offset_right = -2.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_2vin7")
 
 [node name="Panel" type="Panel" parent="."]
@@ -105,15 +106,6 @@ offset_bottom = 614.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xdeki")
-
-[node name="ColorRect" type="ColorRect" parent="Panel"]
-texture_filter = 1
-material = SubResource("ShaderMaterial_xykxp")
-offset_left = 8.0
-offset_top = -7.0
-offset_right = 4994.0
-offset_bottom = 2647.0
-mouse_filter = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -199,6 +191,16 @@ limit_bottom = 1800
 position_smoothing_speed = 10.0
 rotation_smoothing_speed = 10.0
 script = ExtResource("4_fvkuo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xykxp")
+layout_mode = 0
+offset_left = -1113.0
+offset_top = -557.0
+offset_right = 3873.0
+offset_bottom = 2097.0
+mouse_filter = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_exit_2_pressed"]
