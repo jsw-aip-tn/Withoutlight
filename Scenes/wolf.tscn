@@ -138,7 +138,7 @@ shape = SubResource("CircleShape2D_1u4ol")
 
 [node name="Ray Casts" type="Node" parent="Wolf"]
 
-[node name="Up" type="RayCast2D" parent="Wolf/Ray Casts"]
+[node name="RayCastUp" type="RayCast2D" parent="Wolf/Ray Casts"]
 target_position = Vector2(0, -47)
 
 [node name="Down" type="RayCast2D" parent="Wolf/Ray Casts"]

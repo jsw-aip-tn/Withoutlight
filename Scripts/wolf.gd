@@ -15,10 +15,14 @@ var dash_speed = 4
 var is_dashing = false
 
 @onready var progress_bar: ProgressBar = $ProgressBar2
-@onready var up: RayCast2D = $"Ray Casts/Up"
+@onready var ray_cast_up = $"Ray Casts/RayCastUp"
 @onready var down: RayCast2D = $"Ray Casts/Down"
 @onready var left: RayCast2D = $"Ray Casts/Left"
 @onready var right: RayCast2D = $"Ray Casts/Right"
+
+func _process (delta):
+	if ray_cast_up.is_colliding():
+		direction = Vector2(0, -1)
 
 func _ready() -> void:
 	update_hpBar()
