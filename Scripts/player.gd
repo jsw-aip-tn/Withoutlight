@@ -22,6 +22,8 @@ const arrow_path = preload("res://Scenes/arrow.tscn")
 @onready var cooldown_timer: Timer = $atk_cooldown
 @onready var progress_bar: ProgressBar = $ProgressBar2
 @onready var game: Node = $".."
+@onready var current_wood: Label = $CurrentWood
+
 
 func _ready() -> void:
 	update_hpBar()
@@ -29,6 +31,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	movement()
 	place_torch()
+	update_woodtext()
 	
 	if hp <= 0:
 		player_alive = false
@@ -57,12 +60,16 @@ func update_hpBar():
 	progress_bar.update_health(hp, maxHp)
 	
 
+func update_woodtext():
+	current_wood.text = "Wood: " + str(Global.wood_stack) 
+	
 func place_torch():
 	if Input.is_action_just_pressed("place_torch"):
 		if (Global.wood_stack > 0):
 			if !light_nearby && torch_nearby <= 0:
 				var torch = TORCH.instantiate()
 				Global.wood_stack -=1
+				update_woodtext()
 				torch.position = position
 				get_parent().add_child(torch)
 		

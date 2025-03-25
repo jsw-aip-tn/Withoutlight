@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bvik63rvhkf4"]
+[gd_scene load_steps=35 format=3 uid="uid://dnkbe522u62jj"]
 
 [ext_resource type="Texture2D" uid="uid://b4a5nwlrl806u" path="res://Assets/spider/Spider Sprite Sheet.png" id="1_cab4r"]
 [ext_resource type="Script" path="res://Scripts/spider.gd" id="1_umcsc"]
@@ -275,12 +275,10 @@ autoplay = "idle"
 frame_progress = 0.803286
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spider"]
-visible = false
 position = Vector2(-0.156039, 0.941282)
 shape = SubResource("CircleShape2D_vff7k")
 
 [node name="enemy_hitbox" type="Area2D" parent="spider"]
-visible = false
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
@@ -300,16 +298,13 @@ scale = Vector2(1.97721, 2.19209)
 value = 20.0
 
 [node name="search_area" type="Area2D" parent="spider"]
-visible = false
 scale = Vector2(1.12727, 1.22671)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spider/search_area"]
-visible = false
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_ghvne")
 
 [node name="enemie_hitbox" type="Area2D" parent="spider"]
-visible = false
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
