@@ -31,7 +31,7 @@ func spawn_monsters():
 		
 func spawn_wood():
 	var wood_spawn_points = [$SpawnPoints/WoodSpawn]
-	for i in range(2):
+	for i in range(many_to_spawn ):
 		var spawn_point = wood_spawn_points[i % wood_spawn_points.size()] 
 		var wood = WOOD.instantiate()
 		wood.position = spawn_point.position

@@ -49,9 +49,7 @@ func received_damaged(atk):
 		queue_free()
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
-		player_in_range = false
-		is_dashing = false
+	if body.has_method("Fly"):
 		target = body
 		body.received_damaged(atk)
 		body.pushback(position, pushback_strength)

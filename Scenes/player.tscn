@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://cf0fxa3ac7nhb"]
+[gd_scene load_steps=38 format=3 uid="uid://cf0fxa3ac7nhb"]
 
 [ext_resource type="Texture2D" uid="uid://cv0l1yvaxjpda" path="res://Assets/Charakter/adventurer-Sheet.png" id="1_upfeo"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_x6ic7"]
 [ext_resource type="Texture2D" uid="uid://b7og07wr1d60t" path="res://Assets/Charakter/adventurer-bow-Sheet.png" id="3_pq8sw"]
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="4_1tvyj"]
+[ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="5_ohqks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5pgxq"]
 atlas = ExtResource("1_upfeo")
@@ -315,6 +316,17 @@ offset_left = -10.0
 offset_top = -34.0
 offset_right = 9.0
 offset_bottom = -31.0
+
+[node name="CurrentWood" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -52.0
+offset_right = 24.0
+offset_bottom = -35.0
+theme_override_fonts/font = ExtResource("5_ohqks")
+theme_override_font_sizes/font_size = 8
+text = "Wood: x"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
