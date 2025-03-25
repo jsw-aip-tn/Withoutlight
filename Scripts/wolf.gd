@@ -13,7 +13,12 @@ var target
 var target_direction: Vector2 = Vector2.ZERO
 var dash_speed = 4
 var is_dashing = false
+
 @onready var progress_bar: ProgressBar = $ProgressBar2
+@onready var up: RayCast2D = $"Ray Casts/Up"
+@onready var down: RayCast2D = $"Ray Casts/Down"
+@onready var left: RayCast2D = $"Ray Casts/Left"
+@onready var right: RayCast2D = $"Ray Casts/Right"
 
 func _ready() -> void:
 	update_hpBar()
