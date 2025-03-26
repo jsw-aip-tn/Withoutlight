@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var maxHp = 100
 var hp = 100
-var atk = 0
+var atk = 10
 const SPEED = 160.0
 var enemy_in_range = false
 var atk_cooldown = true
@@ -79,11 +79,14 @@ func animation():
 		if direction.x > 0:
 			animated_sprite.flip_h = false  # Blick nach rechts
 			$AnimatedSprite2D/arrowSpawnPoint.position.x = 30
+			$AtkArea/AtkHitbox.position.x = 15
 		else:
 			animated_sprite.flip_h = true  # Blick nach links
 			$AnimatedSprite2D/arrowSpawnPoint.position.x = -30
+			$AtkArea/AtkHitbox.position.x = -15
 		if not animated_sprite.is_playing() or animated_sprite.animation != "run":
 			animated_sprite.play("run")  # Abspielen der Lauf-Animation
+		$AtkArea/AtkHitbox.disabled = true
 #Bewegung nach Oben
 	if direction.y != 0:
 		if not animated_sprite.is_playing() or animated_sprite.animation != "run":
@@ -93,6 +96,7 @@ func animation():
 		melee_attack_triggered = true
 		if not animated_sprite.is_playing() or animated_sprite.animation != "mele_atk":
 			animated_sprite.play("mele_atk")  # Abspielen der Angriff-Animation
+			$AtkArea/AtkHitbox.disabled = false
 		cooldown_timer.start()
 
 	# Range-Angriff Animation
@@ -101,6 +105,7 @@ func animation():
 		if not animated_sprite.is_playing() or animated_sprite.animation != "range_atk":
 			animated_sprite.play("range_atk")  # Abspielen der Fernkampf-Animation
 		cooldown_timer.start()
+		
 
 func fire(dir : Vector2):
 	var arrow = arrow_path.instantiate()
@@ -118,6 +123,7 @@ func idle_animation():
 	# Wenn keine Angriffsanimation läuft, spiele idle ab
 	if not animated_sprite.is_playing() or animated_sprite.animation != "idle":
 		animated_sprite.play("idle")  # Abspielen der Idle-Animation
+		$AtkArea/AtkHitbox.disabled = true
 		
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
@@ -141,12 +147,16 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = false
 #
-func enemy_attack():
-	if enemy_in_range and atk_cooldown == true:
-		return atk
+#func enemy_attack():
+	#return atk
 #
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false
 	fire(facing)
 	range_attack_triggered = false
 	cooldown_timer.stop()
+
+
+func _on_atk_area_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		body.received_damaged(atk)
