@@ -146,10 +146,7 @@ func pushback(enemy_position: Vector2, pushback_strength):
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = false
-#
-#func enemy_attack():
-	#return atk
-#
+
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false
 	fire(facing)
