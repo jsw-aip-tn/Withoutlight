@@ -1,5 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceq4caiu3es4v"]
 
+
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="1_36ddd"]
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Scenes/player.tscn" id="1_ur571"]
@@ -18,3 +19,4 @@ position = Vector2(201, 110)
 blend_mode = 1
 
 [node name="Global" parent="." instance=ExtResource("3_f4v26")]
+

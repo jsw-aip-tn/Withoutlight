@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://1qdi3c3eq1a2"]
+[gd_scene load_steps=23 format=3 uid="uid://1qdi3c3eq1a2"]
 
 [ext_resource type="Texture2D" uid="uid://3mb1kru28e3g" path="res://Assets/Wolf/sprite_1.png" id="1_cd1uv"]
+[ext_resource type="Script" path="res://Scripts/wolf.gd" id="1_hkng7"]
 [ext_resource type="Texture2D" uid="uid://cmtyhvsne86w0" path="res://Assets/Wolf/sprite_2.png" id="2_fhgf8"]
 [ext_resource type="Texture2D" uid="uid://dtoexsw3kky24" path="res://Assets/Wolf/sprite_3.png" id="3_2dbmx"]
 [ext_resource type="Texture2D" uid="uid://p13h5lo7x78v" path="res://Assets/Wolf/sprite_4.png" id="4_a0lmp"]
@@ -8,10 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://bd0lctcswok71" path="res://Assets/Wolf/wolf-idle3.png" id="6_bm4ae"]
 [ext_resource type="Texture2D" uid="uid://cy7ssfbawdk0n" path="res://Assets/Wolf/wolf-idle2.png" id="7_t1qfc"]
 [ext_resource type="Texture2D" uid="uid://6ih6xe5simi3" path="res://Assets/Wolf/wolf-idle1.png" id="8_a54wj"]
+[ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="9_11hhf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpe1x"]
+size = Vector2(42, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dar03"]
+size = Vector2(40.3071, 23.614)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1cpt"]
 atlas = ExtResource("1_cd1uv")
@@ -88,42 +92,66 @@ radius = 2.00984
 [node name="Wolf" type="Node2D"]
 
 [node name="Wolf" type="CharacterBody2D" parent="."]
+script = ExtResource("1_hkng7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf"]
-visible = false
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_vpe1x")
 
 [node name="enemy_hitbox" type="Area2D" parent="Wolf"]
 scale = Vector2(1.042, -0.974)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/enemy_hitbox"]
+position = Vector2(1.37285e-06, -0.513347)
+scale = Vector2(0.999999, 1)
 shape = SubResource("RectangleShape2D_dar03")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Wolf"]
-position = Vector2(1, -1)
-scale = Vector2(0.3, 0.3)
+position = Vector2(0, 9.53674e-07)
+scale = Vector2(0.3, 0.306626)
 sprite_frames = SubResource("SpriteFrames_di00u")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0371147
+frame = 3
+frame_progress = 0.464511
 speed_scale = 0.815
 
 [node name="Timer" type="Timer" parent="Wolf"]
 wait_time = 2.0
 autostart = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Wolf"]
-visible = false
-offset_left = -4.0
-offset_top = -13.0
-offset_bottom = 14.0
-value = 50.0
-show_percentage = false
+[node name="ProgressBar2" parent="Wolf" instance=ExtResource("9_11hhf")]
+offset_left = -8.0
+offset_top = -15.0
+offset_right = -5.0
+offset_bottom = -14.0
+scale = Vector2(5.68888, 3.65064)
+value = 20.0
 
 [node name="search_area" type="Area2D" parent="Wolf"]
 position = Vector2(-3, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wolf/search_area"]
-position = Vector2(6, 2)
-scale = Vector2(-39.72, 26.23)
+position = Vector2(3, 0)
+scale = Vector2(-30.72, 20)
 shape = SubResource("CircleShape2D_1u4ol")
+
+[node name="Ray Casts" type="Node" parent="Wolf"]
+
+[node name="Up" type="RayCast2D" parent="Wolf/Ray Casts"]
+target_position = Vector2(0, -47)
+
+[node name="Down" type="RayCast2D" parent="Wolf/Ray Casts"]
+target_position = Vector2(0, 48)
+
+[node name="Left" type="RayCast2D" parent="Wolf/Ray Casts"]
+target_position = Vector2(-69, 0)
+
+[node name="Right" type="RayCast2D" parent="Wolf/Ray Casts"]
+target_position = Vector2(69, 0)
+
+[connection signal="body_entered" from="Wolf/enemy_hitbox" to="Wolf" method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="Wolf/enemy_hitbox" to="Wolf" method="_on_enemy_hitbox_body_exited"]
+[connection signal="timeout" from="Wolf/Timer" to="Wolf" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Wolf/search_area" to="Wolf" method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="Wolf/search_area" to="Wolf" method="_on_search_area_body_exited"]
