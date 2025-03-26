@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="6_uptis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
-size = Vector2(105, 50)
+size = Vector2(125, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
 size = Vector2(119, 76)
@@ -46,7 +46,8 @@ floor_constant_speed = true
 script = ExtResource("1_rx3w4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
-position = Vector2(-9.05991e-06, -2.38419e-06)
+position = Vector2(-2.50002, -5.66244e-06)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_84b2s")
 
 [node name="enemy_hitbox" type="Area2D" parent="Bat"]

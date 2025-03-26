@@ -49,28 +49,22 @@ func received_damaged(atk):
 		queue_free()
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("Fly"):
+	if body.has_method("player"):
 		target = body
 		body.received_damaged(atk)
 		body.pushback(position, pushback_strength)
+		player_in_range = false
+		is_dashing = false
 
 func _on_search_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_range = true
 		is_dashing = true
 		target = body
-		#attck_player(body)
-		#target_direction = target.position - position
+
 
 func _on_search_area_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_range = false
 		is_dashing = false
 		
-#func attck_player(body):
-#
-	#if player_in_range and !is_dashing:
-		#target_direction = (target.position - position).normalized()
-		#velocity = target_direction * SPEED * dash_speed 
-	#move_and_slide()
-	#print("Attack Moving")

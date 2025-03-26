@@ -13,7 +13,7 @@ script = ExtResource("1_36ddd")
 position = Vector2(96, 432)
 
 [node name="Player" parent="." instance=ExtResource("1_ur571")]
-position = Vector2(189, 129)
+position = Vector2(201, 110)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
