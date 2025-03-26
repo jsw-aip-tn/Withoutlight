@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="6_uptis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
-size = Vector2(105, 50)
+size = Vector2(125, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
 size = Vector2(119, 76)
@@ -46,7 +46,8 @@ floor_constant_speed = true
 script = ExtResource("1_rx3w4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
-position = Vector2(-9.05991e-06, -2.38419e-06)
+position = Vector2(-2.50002, -5.66244e-06)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_84b2s")
 
 [node name="enemy_hitbox" type="Area2D" parent="Bat"]
@@ -91,12 +92,12 @@ scale = Vector2(1.04209, -0.973596)
 position = Vector2(-2.38419e-07, 1.78814e-07)
 shape = SubResource("RectangleShape2D_jrc82")
 
-[connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_exited" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
 [connection signal="timeout" from="Bat/Timer" to="Bat" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Bat/search_area" to="Bat" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="Bat/search_area" to="Bat" method="_on_search_area_body_exited"]
-[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
