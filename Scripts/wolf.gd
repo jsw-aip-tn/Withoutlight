@@ -19,6 +19,7 @@ var is_dashing = false
 @onready var ray_cast_down = $"Ray Casts/RayCastDown"
 @onready var ray_cast_left = $"Ray Casts/RayCastLeft"
 @onready var ray_cast_right = $"Ray Casts/RayCastRight"
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 
 func _process (delta):
@@ -28,8 +29,10 @@ func _process (delta):
 		direction = Vector2(0, -1)
 	if ray_cast_left.is_colliding():
 		direction = Vector2(1, 0)
+		$sprite.flip_h = false
 	if ray_cast_right.is_colliding():
 		direction = Vector2(-1, 0)
+		$sprite.flip_h = true
 
 func _ready() -> void:
 	update_hpBar()
