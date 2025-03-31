@@ -3,7 +3,7 @@ extends CharacterBody2D
 var maxHp = 100
 var hp = 100
 var atk = 10
-const SPEED = 160.0
+var SPEED = 160.0
 var enemy_in_range = false
 var atk_cooldown = true
 var player_alive = true
@@ -23,7 +23,6 @@ const arrow_path = preload("res://Scenes/arrow.tscn")
 @onready var progress_bar: ProgressBar = $ProgressBar2
 @onready var game: Node = $".."
 @onready var current_wood: Label = $CurrentWood
-
 
 func _ready() -> void:
 	update_hpBar()
@@ -46,7 +45,6 @@ func movement():
 	if direction.length():
 		direction = direction.normalized()
 		velocity = direction * SPEED
-		#look_at(position + direction)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
@@ -59,7 +57,6 @@ func movement():
 func update_hpBar():
 	progress_bar.update_health(hp, maxHp)
 	
-
 func update_woodtext():
 	current_wood.text = "Wood: " + str(Global.wood_stack) 
 	
@@ -106,7 +103,6 @@ func animation():
 			animated_sprite.play("range_atk")  # Abspielen der Fernkampf-Animation
 		cooldown_timer.start()
 		
-
 func fire(dir : Vector2):
 	var arrow = arrow_path.instantiate()
 	if range_attack_triggered:
@@ -125,11 +121,6 @@ func idle_animation():
 		animated_sprite.play("idle")  # Abspielen der Idle-Animation
 		$AtkArea/AtkHitbox.disabled = true
 		
-func _on_player_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("enemy"):
-		enemy_in_range = true
-		body.received_damaged(atk)
-
 func received_damaged(atk):
 	hp = hp -  atk
 	update_hpBar()
@@ -137,22 +128,16 @@ func received_damaged(atk):
 		player_alive = false
 		game.GameOver()
 
-
 func pushback(enemy_position: Vector2, pushback_strength):
 	var pushback_direction = (position - enemy_position)  
 	velocity = pushback_direction * pushback_strength  
 	move_and_slide() 
 	
-func _on_player_hitbox_body_exited(body: Node2D) -> void:
-	if body.has_method("enemy"):
-		enemy_in_range = false
-
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false
 	fire(facing)
 	range_attack_triggered = false
 	cooldown_timer.stop()
-
 
 func _on_atk_area_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
