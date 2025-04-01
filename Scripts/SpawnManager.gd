@@ -2,7 +2,6 @@ extends Node2D
 
 var many_to_spawn: int 
 const BAT = preload("res://Scenes/bat.tscn")
-#@onready var bat_spawn_1: Marker2D = $BatSpawn1
 const WOOD = preload("res://Scenes/wood.tscn")
 
 @onready var wave_timer: Timer = $WaveTimer
