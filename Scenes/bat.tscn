@@ -47,7 +47,6 @@ script = ExtResource("1_rx3w4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
 position = Vector2(-2.50002, -5.66244e-06)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_84b2s")
 
 [node name="enemy_hitbox" type="Area2D" parent="Bat"]
