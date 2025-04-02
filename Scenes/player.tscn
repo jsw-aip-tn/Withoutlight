@@ -316,7 +316,7 @@ script = ExtResource("1_x6ic7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_he8wf")
-animation = &"dash"
+animation = &"mele_atk"
 autoplay = "idle"
 frame = 4
 

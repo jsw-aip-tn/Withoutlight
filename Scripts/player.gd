@@ -3,7 +3,7 @@ extends CharacterBody2D
 var maxHp = 100
 var hp = 100
 var atk = 10
-var SPEED = 80.0
+var SPEED = 120.0
 var dash_speed: float = 0.0
 var enemy_in_range = false
 var atk_cooldown = true
@@ -44,6 +44,7 @@ func player():
 
 func movement():
 	if !is_dashing:
+		dash_speed = 0
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if facing != direction and direction != Vector2.ZERO:
 			facing = direction
