@@ -3,7 +3,7 @@ extends CharacterBody2D
 var maxhp = 50
 var hp = 50
 var atk = 4
-@export var SPEED : float = 30
+@export var SPEED : float = 20
 var pushback_strength  = 0.5
 var player_in_range = false
 var direction = Vector2()
@@ -24,13 +24,13 @@ var is_dashing = false
 
 func _process (delta):
 	if ray_cast_up.is_colliding():
-		direction = Vector2(0, 1)
+		direction = Vector2.DOWN
 	if ray_cast_down.is_colliding():
-		direction = Vector2(0, -1)
+		direction = Vector2.UP
 	if ray_cast_left.is_colliding():
-		direction = Vector2(1, 0)
+		direction = Vector2.RIGHT
 	if ray_cast_right.is_colliding():
-		direction = Vector2(-1, 0)
+		direction = Vector2.LEFT
 
 func _ready() -> void:
 	update_hpBar()

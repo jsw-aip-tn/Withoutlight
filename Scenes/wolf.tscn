@@ -139,16 +139,17 @@ shape = SubResource("CircleShape2D_1u4ol")
 [node name="Ray Casts" type="Node" parent="Wolf"]
 
 [node name="RayCastUp" type="RayCast2D" parent="Wolf/Ray Casts"]
-target_position = Vector2(0, -47)
+target_position = Vector2(0, -29)
 
 [node name="RayCastDown" type="RayCast2D" parent="Wolf/Ray Casts"]
-target_position = Vector2(0, 48)
+target_position = Vector2(-40, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="Wolf/Ray Casts"]
-target_position = Vector2(-69, 0)
+target_position = Vector2(0, 31)
 
 [node name="RayCastRight" type="RayCast2D" parent="Wolf/Ray Casts"]
-target_position = Vector2(69, 0)
+position = Vector2(6, 0)
+target_position = Vector2(37, 0)
 
 [connection signal="body_entered" from="Wolf/enemy_hitbox" to="Wolf" method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="Wolf/enemy_hitbox" to="Wolf" method="_on_enemy_hitbox_body_exited"]
