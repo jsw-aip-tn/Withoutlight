@@ -21,8 +21,7 @@ var is_dashing = false
 @onready var ray_cast_right = $"Ray Casts/RayCastRight"
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-
-func _process (delta):
+func _process(delta):
 	if ray_cast_up.is_colliding():
 		direction = Vector2.DOWN
 	if ray_cast_down.is_colliding():
