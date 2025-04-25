@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=3 uid="uid://dnkbe522u62jj"]
 
 [ext_resource type="Texture2D" uid="uid://b4a5nwlrl806u" path="res://Assets/spider/Spider Sprite Sheet.png" id="1_cab4r"]
-[ext_resource type="Script" path="res://Scripts/spider.gd" id="1_umcsc"]
+[ext_resource type="Script" uid="uid://041iwk44my11" path="res://Scripts/spider.gd" id="1_umcsc"]
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="2_hdbfs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0w2y"]

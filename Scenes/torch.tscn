@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cg7gdqta2qlxu"]
 
-[ext_resource type="Script" path="res://Scripts/torch.gd" id="1_537kc"]
+[ext_resource type="Script" uid="uid://b52va66lh0hpd" path="res://Scripts/torch.gd" id="1_537kc"]
 [ext_resource type="Texture2D" uid="uid://ca301heqlctvg" path="res://Assets/Torch/Torch_32_Flamas_0.png" id="1_x3npq"]
 [ext_resource type="Texture2D" uid="uid://cnsjrbg4gv5j5" path="res://Assets/Torch/Torch_32_Flamas_1.png" id="2_fuwvo"]
 [ext_resource type="Texture2D" uid="uid://boi25un6j6qmf" path="res://Assets/Torch/Torch_32_Flamas_2.png" id="3_yajot"]

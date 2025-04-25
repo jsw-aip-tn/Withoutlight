@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://cqxebqfumapo4"]
 
-[ext_resource type="Script" path="res://Scripts/ScreensMenuScripts/main_menu.gd" id="1_2vin7"]
-[ext_resource type="Shader" path="res://Scenes/MenuShader.gdshader" id="1_c04yo"]
+[ext_resource type="Script" uid="uid://cyniwu230gbq6" path="res://Scripts/ScreensMenuScripts/main_menu.gd" id="1_2vin7"]
+[ext_resource type="Shader" uid="uid://d4nwc24l6xoig" path="res://Scenes/MenuShader.gdshader" id="1_c04yo"]
 [ext_resource type="Texture2D" uid="uid://cjp8keakc1nyx" path="res://background/Main Menu.png" id="2_r0fkj"]
 [ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="3_ilb02"]
-[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="4_fvkuo"]
+[ext_resource type="Script" uid="uid://c58rtfey7pyfm" path="res://Scripts/camera_2d.gd" id="4_fvkuo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xdeki"]
 texture = ExtResource("2_r0fkj")
@@ -76,7 +76,7 @@ shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xykxp"]
 shader = ExtResource("1_c04yo")
-shader_parameter/mouse_position = null
+shader_parameter/mouse_position = Vector2(0, 0)
 shader_parameter/pixel_size = 5.0
 shader_parameter/threshold = 150.0
 

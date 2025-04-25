@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://cf0fxa3ac7nhb"]
 
 [ext_resource type="Texture2D" uid="uid://cv0l1yvaxjpda" path="res://Assets/Charakter/adventurer-Sheet.png" id="1_upfeo"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_x6ic7"]
+[ext_resource type="Script" uid="uid://cohter0p5igf1" path="res://Scripts/player.gd" id="1_x6ic7"]
 [ext_resource type="Texture2D" uid="uid://b7og07wr1d60t" path="res://Assets/Charakter/adventurer-bow-Sheet.png" id="3_pq8sw"]
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="4_1tvyj"]
 [ext_resource type="FontFile" uid="uid://suqy7pestg6u" path="res://fonts/Tiny5-Regular.ttf" id="5_ohqks"]
@@ -289,8 +289,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vl5n"]
 _data = {
-"RESET": SubResource("Animation_ri0gh"),
-"range_atk": SubResource("Animation_4ofmk")
+&"RESET": SubResource("Animation_ri0gh"),
+&"range_atk": SubResource("Animation_4ofmk")
 }
 
 [sub_resource type="Gradient" id="Gradient_1a27s"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://by2s5ufovnnrv"]
 
-[ext_resource type="Script" path="res://Scripts/spidertest.gd" id="1_5k5q7"]
+[ext_resource type="Script" uid="uid://blnh4o2stb12v" path="res://Scripts/spidertest.gd" id="1_5k5q7"]
 [ext_resource type="Texture2D" uid="uid://b4a5nwlrl806u" path="res://Assets/spider/Spider Sprite Sheet.png" id="2_ggjkx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0w2y"]
