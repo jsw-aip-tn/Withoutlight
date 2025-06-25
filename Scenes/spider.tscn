@@ -260,7 +260,7 @@ size = Vector2(8.08572, 5.80052)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghvne"]
 radius = 1.19908
 
-[node name="spider" type="Node2D"]
+[node name="spider" type="Node2D" groups=["enemies"]]
 
 [node name="spider" type="CharacterBody2D" parent="."]
 scale = Vector2(3.20435, 2.83318)
