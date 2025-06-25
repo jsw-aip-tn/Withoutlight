@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcuxlgvhqses7"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_hnmru"]
+
+[node name="Spawner" type="Node2D"]
+
+[node name="enemy_spawner" type="Node" parent="." groups=["enemies"]]
+script = ExtResource("1_hnmru")
+NUMBER_OF_SPAWN_TRIES = 1
+MAX_NUMBER_OF_ENEMIES = 3
+ENEMY_TYPE = 3
+SCENES = Array[String](["res://Scenes/bat.tscn", "res://Scenes/wolf.tscn", "res://Scenes/spider.tscn"])
+
+[node name="enemy_spawn_frequency" type="Timer" parent="enemy_spawner"]
+wait_time = 5.0
+
+[node name="spawn_area" type="ReferenceRect" parent="enemy_spawner"]
+anchors_preset = -1
+anchor_left = -0.00347222
+anchor_top = -0.138889
+anchor_right = -0.00347222
+anchor_bottom = -0.138889
+offset_left = 123.0
+offset_top = 130.0
+offset_right = 584.0
+offset_bottom = 460.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="enemy_spawner/enemy_spawn_frequency" to="enemy_spawner" method="_on_enemy_spawn_frequency_timeout"]

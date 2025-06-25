@@ -37,7 +37,7 @@ func movement(delta: float):
 			direction = Vector2(cos(angle), sin(angle)) # Berechne Richtung
 			time_since_last_change = 0
 			velocity = direction.normalized() * SPEED
-		print("random Moving")
+		##print("random Moving")
 		move_and_slide()
 	if  player_in_range and is_dashing:
 		is_dashing = true

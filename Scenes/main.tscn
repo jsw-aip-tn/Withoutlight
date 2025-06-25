@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceq4caiu3es4v"]
+[gd_scene load_steps=7 format=3 uid="uid://ceq4caiu3es4v"]
 
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="1_36ddd"]
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Scenes/player.tscn" id="1_ur571"]
 [ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Scenes/global.tscn" id="3_f4v26"]
+[ext_resource type="PackedScene" uid="uid://bcuxlgvhqses7" path="res://Scenes/spawner_generic.tscn" id="5_kvgt1"]
+[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="6_ik7dg"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_36ddd")
@@ -18,3 +20,68 @@ position = Vector2(201, 110)
 blend_mode = 1
 
 [node name="Global" parent="." instance=ExtResource("3_f4v26")]
+
+[node name="Spawner" parent="." instance=ExtResource("5_kvgt1")]
+
+[node name="enemy_spawner" parent="Spawner" index="0"]
+MAX_NUMBER_OF_ENEMIES = 10
+ENEMY_TYPE = 1
+
+[node name="spawn_area" parent="Spawner/enemy_spawner" index="1"]
+anchor_left = -0.0277778
+anchor_top = -0.174383
+anchor_right = -0.162326
+anchor_bottom = -0.319445
+offset_left = 286.0
+offset_top = 103.0
+offset_right = 747.0
+offset_bottom = 433.0
+
+[node name="enemy_spawner3" type="Node" parent="Spawner" groups=["enemies"]]
+script = ExtResource("6_ik7dg")
+NUMBER_OF_SPAWN_TRIES = 1
+MAX_NUMBER_OF_ENEMIES = 2
+ENEMY_TYPE = 2
+SCENES = Array[String](["res://Scenes/bat.tscn", "res://Scenes/wolf.tscn", "res://Scenes/spider.tscn"])
+
+[node name="enemy_spawn_frequency" type="Timer" parent="Spawner/enemy_spawner3"]
+wait_time = 5.0
+
+[node name="spawn_area" type="ReferenceRect" parent="Spawner/enemy_spawner3"]
+anchors_preset = -1
+anchor_left = -0.0277778
+anchor_top = -0.174383
+anchor_right = -0.0277778
+anchor_bottom = -0.174383
+offset_left = 318.0
+offset_top = 449.0
+offset_right = 779.0
+offset_bottom = 779.0
+metadata/_edit_use_anchors_ = true
+
+[node name="enemy_spawner2" type="Node" parent="Spawner" groups=["enemies"]]
+script = ExtResource("6_ik7dg")
+NUMBER_OF_SPAWN_TRIES = 1
+MAX_NUMBER_OF_ENEMIES = 1
+ENEMY_TYPE = 3
+SCENES = Array[String](["res://Scenes/bat.tscn", "res://Scenes/wolf.tscn", "res://Scenes/spider.tscn"])
+
+[node name="enemy_spawn_frequency" type="Timer" parent="Spawner/enemy_spawner2"]
+wait_time = 5.0
+
+[node name="spawn_area" type="ReferenceRect" parent="Spawner/enemy_spawner2"]
+anchors_preset = -1
+anchor_left = -0.0729167
+anchor_top = -0.270062
+anchor_right = -0.0729167
+anchor_bottom = -0.270062
+offset_left = 735.0
+offset_top = 355.0
+offset_right = 1196.0
+offset_bottom = 685.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="Spawner/enemy_spawner3/enemy_spawn_frequency" to="Spawner/enemy_spawner3" method="_on_enemy_spawn_frequency_timeout"]
+[connection signal="timeout" from="Spawner/enemy_spawner2/enemy_spawn_frequency" to="Spawner/enemy_spawner2" method="_on_enemy_spawn_frequency_timeout"]
+
+[editable path="Spawner"]
