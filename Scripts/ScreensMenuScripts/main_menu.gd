@@ -14,7 +14,7 @@ func _on_start_pressed() -> void:
 func _on_exit_2_pressed() -> void:
 	get_tree().quit()
 
-func _process(delta):
+func _process(_delta):
 	# Get the mouse position in normalized coordinates (0 to 1)
 	var mouse_position = get_viewport().get_mouse_position()
 	var viewport_size = get_viewport().size

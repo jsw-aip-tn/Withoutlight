@@ -31,7 +31,7 @@ const arrow_path = preload("res://Scenes/arrow.tscn")
 func _ready() -> void:
 	update_hpBar()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	movement()
 	place_torch()
 	update_woodtext()
@@ -154,8 +154,8 @@ func idle_animation():
 		animated_sprite.play("idle")  # Abspielen der Idle-Animation
 		$AtkArea/AtkHitbox.disabled = true
 		
-func received_damaged(atk):
-	hp = hp -  atk
+func received_damaged(dmg):
+	hp = hp -  dmg
 	update_hpBar()
 	if hp <= 0:
 		player_alive = false

@@ -42,8 +42,8 @@ func movement(delta: float):
 		velocity = target_direction * SPEED * dash_speed 
 		move_and_slide()
 	
-func received_damaged(atk):
-	hp = hp -  atk
+func received_damaged(dmg):
+	hp = hp -  dmg
 	update_hpBar()
 	if hp <= 0:
 		queue_free()

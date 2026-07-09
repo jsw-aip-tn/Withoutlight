@@ -2,7 +2,7 @@ extends Node
 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	win()
 
 func win():
