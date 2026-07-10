@@ -49,7 +49,7 @@ func movement():
 			facing = direction
 		if direction.length():
 			direction = direction.normalized()
-			velocity = direction * (SPEED + dash_speed)
+			velocity = direction * (SPEED)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
