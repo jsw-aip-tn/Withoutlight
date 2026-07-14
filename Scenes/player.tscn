@@ -324,7 +324,7 @@ frame = 4
 position = Vector2(30, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1751912271]
-position = Vector2(0, -14)
+position = Vector2(0, -10)
 scale = Vector2(1.1584, 1.16809)
 shape = SubResource("CircleShape2D_t5187")
 
@@ -332,7 +332,7 @@ shape = SubResource("CircleShape2D_t5187")
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="player_hitbox" unique_id=1436685826]
-position = Vector2(0, -16)
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_mt8bw")
 
 [node name="atk_cooldown" type="Timer" parent="." unique_id=1499502262]
@@ -376,7 +376,7 @@ vertical_alignment = 1
 [node name="AtkArea" type="Area2D" parent="." unique_id=1424580837]
 
 [node name="AtkHitbox" type="CollisionShape2D" parent="AtkArea" unique_id=1442361212]
-position = Vector2(12.708, -18)
+position = Vector2(12.708, -10)
 scale = Vector2(1.1584, 1.16809)
 shape = SubResource("RectangleShape2D_tpobd")
 

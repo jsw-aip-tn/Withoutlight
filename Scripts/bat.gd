@@ -34,7 +34,7 @@ func movement(delta: float):
 			var angle = randf_range(0, 2 * PI)  # Zufälligen Winkel generieren
 			direction = Vector2(cos(angle), sin(angle)) # Berechne Richtung
 			time_since_last_change = 0
-			velocity = direction.normalized() * SPEED	
+			velocity = direction.normalized() * SPEED
 		move_and_slide()
 	if  player_in_range and is_dashing:
 		is_dashing = true
