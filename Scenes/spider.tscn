@@ -1,7 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://dnkbe522u62jj"]
+[gd_scene format=3 uid="uid://dnkbe522u62jj"]
 
 [ext_resource type="Texture2D" uid="uid://b4a5nwlrl806u" path="res://Assets/spider/Spider Sprite Sheet.png" id="1_cab4r"]
-[ext_resource type="Script" path="res://Scripts/spider.gd" id="1_umcsc"]
+[ext_resource type="Script" uid="uid://dnttbatr717rl" path="res://Scripts/spider.gd" id="1_umcsc"]
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="2_hdbfs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0w2y"]
@@ -130,7 +130,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j0w2y")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -186,7 +186,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iyut8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -203,7 +203,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j148s")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -223,7 +223,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hhtpi")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -246,7 +246,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4f8kk")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -260,13 +260,13 @@ size = Vector2(8.08572, 5.80052)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghvne"]
 radius = 1.19908
 
-[node name="spider" type="Node2D"]
+[node name="spider" type="Node2D" unique_id=1093128069]
 
-[node name="spider" type="CharacterBody2D" parent="."]
+[node name="spider" type="CharacterBody2D" parent="." unique_id=1294980014]
 scale = Vector2(3.20435, 2.83318)
 script = ExtResource("1_umcsc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="spider"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="spider" unique_id=1423415715]
 position = Vector2(0, -8)
 scale = Vector2(0.71875, 0.75)
 sprite_frames = SubResource("SpriteFrames_xp5q2")
@@ -274,22 +274,22 @@ animation = &"walk"
 autoplay = "idle"
 frame_progress = 0.803286
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider" unique_id=757716547]
 position = Vector2(-0.156039, 0.941282)
 shape = SubResource("CircleShape2D_vff7k")
 
-[node name="enemy_hitbox" type="Area2D" parent="spider"]
+[node name="enemy_hitbox" type="Area2D" parent="spider" unique_id=1538962378]
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemy_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemy_hitbox" unique_id=1429913151]
 position = Vector2(-0.149727, -1.0876)
 shape = SubResource("RectangleShape2D_16ptw")
 
-[node name="Timer" type="Timer" parent="spider"]
+[node name="Timer" type="Timer" parent="spider" unique_id=261292302]
 autostart = true
 
-[node name="ProgressBar2" parent="spider" instance=ExtResource("2_hdbfs")]
+[node name="ProgressBar2" parent="spider" unique_id=1610696327 instance=ExtResource("2_hdbfs")]
 offset_left = -4.99321
 offset_top = 6.00032
 offset_right = 0.00678968
@@ -297,18 +297,18 @@ offset_bottom = 7.00032
 scale = Vector2(1.97721, 2.19209)
 value = 20.0
 
-[node name="search_area" type="Area2D" parent="spider"]
+[node name="search_area" type="Area2D" parent="spider" unique_id=1958759762]
 scale = Vector2(1.12727, 1.22671)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/search_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/search_area" unique_id=1321766064]
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_ghvne")
 
-[node name="enemie_hitbox" type="Area2D" parent="spider"]
+[node name="enemie_hitbox" type="Area2D" parent="spider" unique_id=935837149]
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemie_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemie_hitbox" unique_id=247771363]
 position = Vector2(9.15155e-06, -1.0876)
 shape = SubResource("RectangleShape2D_16ptw")
 

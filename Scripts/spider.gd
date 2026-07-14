@@ -3,13 +3,13 @@ extends CharacterBody2D
 var maxhp = 20
 var hp = 20
 var atk = 2
-var speed = 40
-@export var SPEED : float = 20
+#var speed = 40
+@export var SPEED : float = 350
 var pushback_strength  = 0.5
 var player_in_range = false
 var direction = Vector2()
-var time_since_last_change = 0
-var change_interval = 2  # Alle 2 Sekunden die Richtung ändern
+var time_since_last_change = 0.0
+var change_interval = 2.0  # Alle 2 Sekunden die Richtung ändern
 var target
 var target_direction: Vector2 = Vector2.ZERO
 var dash_speed = 5
@@ -35,22 +35,21 @@ func movement(delta: float):
 		if time_since_last_change >= change_interval:
 			var angle = randf_range(0, 2 * PI)  # Zufälligen Winkel generieren
 			direction = Vector2(cos(angle), sin(angle)) # Berechne Richtung
-			time_since_last_change = 0
-			velocity = direction.normalized() * SPEED
-		print("random Moving")
+			time_since_last_change = 0.0
+			velocity = direction.normalized() * SPEED * delta
 		move_and_slide()
 	if  player_in_range and is_dashing:
-		is_dashing = true
+		#is_dashing = true
 		target_direction = (target.global_position - global_position).normalized()
-		velocity = target_direction * SPEED * dash_speed
+		velocity = target_direction * SPEED * dash_speed * delta
 		move_and_slide()
 	if velocity.x > 0:
 		$AnimatedSprite2D.flip_h = true # Move right
 	elif velocity.x < 0:
 		$AnimatedSprite2D.flip_h = false  # Move left
 	
-func received_damaged(atk):
-	hp = hp -  atk
+func received_damaged(dmg):
+	hp = hp -  dmg
 	update_hpBar()
 	if hp <= 0:
 		queue_free()

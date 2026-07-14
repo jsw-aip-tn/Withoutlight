@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceq4caiu3es4v"]
+[gd_scene format=3 uid="uid://ceq4caiu3es4v"]
 
-[ext_resource type="Script" path="res://Scripts/GameUI.gd" id="1_36ddd"]
+[ext_resource type="Script" uid="uid://c1jm6kk4xe36n" path="res://Scripts/GameUI.gd" id="1_36ddd"]
 [ext_resource type="PackedScene" uid="uid://gn8mhdtxcqse" path="res://Map/map.tscn" id="1_kms4s"]
 [ext_resource type="PackedScene" uid="uid://cf0fxa3ac7nhb" path="res://Scenes/player.tscn" id="1_ur571"]
 [ext_resource type="PackedScene" uid="uid://cmmwlughnhyo5" path="res://Scenes/global.tscn" id="3_f4v26"]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" unique_id=368561458]
 script = ExtResource("1_36ddd")
 
-[node name="Map" parent="." instance=ExtResource("1_kms4s")]
+[node name="Map" parent="." unique_id=1866865985 instance=ExtResource("1_kms4s")]
 position = Vector2(96, 432)
 
-[node name="Player" parent="." instance=ExtResource("1_ur571")]
+[node name="Player" parent="." unique_id=1035330077 instance=ExtResource("1_ur571")]
 position = Vector2(201, 110)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=49620818]
 blend_mode = 1
 
-[node name="Global" parent="." instance=ExtResource("3_f4v26")]
+[node name="Global" parent="." unique_id=1782633937 instance=ExtResource("3_f4v26")]
