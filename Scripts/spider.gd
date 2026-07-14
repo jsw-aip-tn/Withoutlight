@@ -14,6 +14,7 @@ var target
 var target_direction: Vector2 = Vector2.ZERO
 var dash_speed = 5
 var is_dashing = false
+var is_alive = true
 #@onready var player = get_node("/root/Game/Player")
 @onready var progress_bar: ProgressBar = $ProgressBar2
 
@@ -21,7 +22,8 @@ func _ready() -> void:
 	update_hpBar()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	movement(delta)
+	if is_alive:
+		movement(delta)
 	
 func enemy():
 	pass
@@ -52,10 +54,14 @@ func received_damaged(dmg):
 	hp = hp -  dmg
 	update_hpBar()
 	if hp <= 0:
-		queue_free()
+		is_alive = false
+		$CollisionShape2D.queue_free()
+		$AnimatedSprite2D.play("death")
+		$DeathTimer.start()
+		#queue_free()
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and is_alive:
 		player_in_range = false
 		is_dashing = false
 		target = body
@@ -63,7 +69,7 @@ func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
 		body.pushback(position, pushback_strength)
 
 func _on_search_area_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and is_alive:
 		player_in_range = true
 		is_dashing = true
 		target = body
@@ -73,7 +79,7 @@ func _on_search_area_body_entered(body: Node2D) -> void:
 		#target_direction = target.position - position
 
 func _on_search_area_body_exited(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and is_alive:
 		player_in_range = false
 		is_dashing = false
 		$AnimatedSprite2D.play("idle")
@@ -87,3 +93,7 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 		#velocity = target_direction * SPEED * dash_speed 
 	#move_and_slide()
 	#print("Attack Moving")
+
+
+func _on_death_timer_timeout() -> void:
+	queue_free()

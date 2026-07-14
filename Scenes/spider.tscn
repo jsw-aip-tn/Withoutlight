@@ -186,7 +186,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iyut8")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -270,9 +270,10 @@ script = ExtResource("1_umcsc")
 position = Vector2(0, -8)
 scale = Vector2(0.71875, 0.75)
 sprite_frames = SubResource("SpriteFrames_xp5q2")
-animation = &"walk"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.803286
+frame = 16
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spider" unique_id=757716547]
 position = Vector2(-0.156039, 0.941282)
@@ -312,5 +313,10 @@ scale = Vector2(1.04209, -0.973596)
 position = Vector2(9.15155e-06, -1.0876)
 shape = SubResource("RectangleShape2D_16ptw")
 
+[node name="DeathTimer" type="Timer" parent="spider" unique_id=1362185957]
+wait_time = 1.5999999999999999
+one_shot = true
+
 [connection signal="body_entered" from="spider/search_area" to="spider" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="spider/search_area" to="spider" method="_on_search_area_body_exited"]
+[connection signal="timeout" from="spider/DeathTimer" to="spider" method="_on_death_timer_timeout"]

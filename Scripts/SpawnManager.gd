@@ -58,10 +58,12 @@ func _on_wave_timer_timeout() -> void:
 
 #based on the wave, determine how many of each enemy to spawn
 func distribute_spawns():
+	#only spawns bats in first 3 waves
 	if Global.current_wave <= 3:
 		number_of_bats = many_to_spawn
 		number_of_spiders = 0
 		number_of_wolves = 0
+	#spawns bats and spiders in waves 4-6
 	elif Global.current_wave <= 6:
 		number_of_bats = ceil(many_to_spawn / 2.0)
 		number_of_spiders = floor(many_to_spawn / 2.0)
