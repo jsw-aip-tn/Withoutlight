@@ -185,7 +185,7 @@ func _on_atk_area_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		body.received_damaged(atk)
 	if body.has_method("pushback"):
-		body.pushback(global_position.direction_to(body.global_position), 100)
+		body.pushback(global_position.direction_to(body.global_position), 200)
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false

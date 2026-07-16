@@ -17,8 +17,8 @@ func _ready() -> void:
 	#prepare_spawn("bat", 10,15)
 
 func start_wave():
-	Global.current_wave += 1  
-	many_to_spawn = Global.current_wave 
+	Global.current_wave += 1
+	many_to_spawn = Global.current_wave
 	distribute_spawns()
 	spawn_monsters()
 	spawn_wood()

@@ -66,8 +66,7 @@ func received_damaged(dmg):
 		#move_and_slide()
 
 func pushback(pushback_direction: Vector2, strength):
-	knockback += pushback_direction.normalized() * strength * 10
-	print("KNOCKBACK: ", knockback.length())
+	knockback += pushback_direction.normalized() * strength
 
 func reset_animation():
 	if player_in_range:
