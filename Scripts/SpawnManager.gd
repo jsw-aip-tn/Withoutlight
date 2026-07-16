@@ -23,7 +23,7 @@ func start_wave():
 	spawn_monsters()
 	spawn_wood()
 	wave_timer.start()
-	print(Global.current_wave)
+	print("Wave ", Global.current_wave, " begins now.")
 
 func spawn_monsters():
 	#spawn bats

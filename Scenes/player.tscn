@@ -379,6 +379,8 @@ vertical_alignment = 1
 position = Vector2(12.708, -10)
 scale = Vector2(1.1584, 1.16809)
 shape = SubResource("RectangleShape2D_tpobd")
+disabled = true
+debug_color = Color(0.83812743, 0.2217789, 0.2355273, 0.41960785)
 
 [node name="dash_timer" type="Timer" parent="." unique_id=2045334588]
 
