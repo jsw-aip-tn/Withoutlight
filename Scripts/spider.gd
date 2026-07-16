@@ -54,11 +54,19 @@ func received_damaged(dmg):
 	hp = hp -  dmg
 	update_hpBar()
 	if hp <= 0:
+		$AnimationPlayer.play("death")
 		is_alive = false
-		$CollisionShape2D.queue_free()
-		$AnimatedSprite2D.play("death")
-		$DeathTimer.start()
-		#queue_free()
+	else:
+		$AnimationPlayer.play("hurt")
+		#var pushback_direction = (position - target_direction).normalized()
+		#velocity = pushback_direction * -800.0
+		#move_and_slide()
+
+func reset_animation():
+	if player_in_range:
+		$AnimationPlayer.play("walk")
+	else:
+		$AnimationPlayer.play("idle")
 
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("player") and is_alive:
@@ -73,7 +81,7 @@ func _on_search_area_body_entered(body: Node2D) -> void:
 		player_in_range = true
 		is_dashing = true
 		target = body
-		$AnimatedSprite2D.play("walk")
+		$AnimationPlayer.play("walk")
 
 		#attck_player(body)
 		#target_direction = target.position - position
@@ -82,8 +90,9 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 	if body.has_method("player") and is_alive:
 		player_in_range = false
 		is_dashing = false
-		$AnimatedSprite2D.play("idle")
+		$AnimationPlayer.play("idle")
 		
+
 
 		
 #func attck_player(body):
@@ -93,7 +102,3 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 		#velocity = target_direction * SPEED * dash_speed 
 	#move_and_slide()
 	#print("Attack Moving")
-
-
-func _on_death_timer_timeout() -> void:
-	queue_free()
