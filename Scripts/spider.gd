@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var maxhp = 20
 var hp = 20
-var atk = 2
+var atk = 6
 @export var SPEED : float = 30
 var pushback_strength  = 120
 var knockback: Vector2 = Vector2.ZERO
@@ -12,7 +12,7 @@ var time_since_last_change = 0.0
 var change_interval = 2.0  # Alle 2 Sekunden die Richtung ändern
 var target
 var target_direction: Vector2 = Vector2.ZERO
-var dash_speed = 2.0
+var dash_speed = 1.8
 var is_dashing = false
 var is_alive = true
 #@onready var player = get_node("/root/Game/Player")
@@ -74,6 +74,7 @@ func reset_animation():
 	else:
 		$AnimationPlayer.play("idle")
 
+
 func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("player") and is_alive:
 		player_in_range = false
@@ -81,6 +82,7 @@ func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
 		target = body
 		body.received_damaged(atk)
 		body.pushback(global_position.direction_to(body.global_position), pushback_strength)
+		$AttackCooldownTimer.start()
 
 func _on_search_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player") and is_alive:
@@ -108,3 +110,11 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 		#velocity = target_direction * SPEED * dash_speed 
 	#move_and_slide()
 	#print("Attack Moving")
+
+
+func _on_attack_cooldown_timer_timeout() -> void:
+	for body in $search_area.get_overlapping_bodies():
+		if body.has_method("player"):
+			player_in_range = true
+			is_dashing = true
+			return

@@ -89,6 +89,7 @@ scale = Vector2(1.04209, -0.973596)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox" unique_id=1012421567]
 position = Vector2(-2.38419e-07, 1.78814e-07)
 shape = SubResource("RectangleShape2D_jrc82")
+debug_color = Color(0.8676566, 0.3269491, 0.36425123, 0.41960785)
 
 [node name="AttackCooldownTimer" type="Timer" parent="Bat" unique_id=2105363930]
 process_callback = 0

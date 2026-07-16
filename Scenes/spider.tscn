@@ -254,11 +254,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vff7k"]
 radius = 3.5908
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_16ptw"]
-size = Vector2(8.08572, 5.80052)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbdki"]
+radius = 3.7433884
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghvne"]
 radius = 1.19908
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kry3j"]
+radius = 4.208239
 
 [sub_resource type="Animation" id="Animation_sbdki"]
 length = 0.001
@@ -479,7 +482,7 @@ scale = Vector2(1.04209, -0.973596)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemy_hitbox" unique_id=1429913151]
 position = Vector2(-0.149727, -1.0876)
-shape = SubResource("RectangleShape2D_16ptw")
+shape = SubResource("CircleShape2D_sbdki")
 disabled = true
 
 [node name="Timer" type="Timer" parent="spider" unique_id=261292302]
@@ -506,12 +509,19 @@ scale = Vector2(1.04209, -0.973596)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemie_hitbox" unique_id=247771363]
 position = Vector2(9.15155e-06, -1.0876)
-shape = SubResource("RectangleShape2D_16ptw")
+shape = SubResource("CircleShape2D_kry3j")
 debug_color = Color(0.88764316, 0.3053037, 0.3310083, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="spider" unique_id=1493582723]
 libraries/ = SubResource("AnimationLibrary_nxbgl")
 autoplay = &"idle"
 
+[node name="AttackCooldownTimer" type="Timer" parent="spider" unique_id=1124404691]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+
 [connection signal="body_entered" from="spider/search_area" to="spider" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="spider/search_area" to="spider" method="_on_search_area_body_exited"]
+[connection signal="body_entered" from="spider/enemie_hitbox" to="spider" method="_on_enemie_hitbox_body_entered"]
+[connection signal="timeout" from="spider/AttackCooldownTimer" to="spider" method="_on_attack_cooldown_timer_timeout"]

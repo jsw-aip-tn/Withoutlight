@@ -238,7 +238,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t5187"]
-radius = 6.0
+radius = 10.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mt8bw"]
 radius = 10.198
@@ -324,15 +324,13 @@ frame = 3
 position = Vector2(19, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1751912271]
-position = Vector2(0, -10)
-scale = Vector2(1.1584, 1.16809)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_t5187")
 
 [node name="player_hitbox" type="Area2D" parent="." unique_id=851828798]
-position = Vector2(0, 2)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="player_hitbox" unique_id=1436685826]
-position = Vector2(0, -10)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_mt8bw")
 
 [node name="atk_cooldown" type="Timer" parent="." unique_id=1499502262]
