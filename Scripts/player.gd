@@ -7,6 +7,7 @@ var SPEED = 80.0
 var dash_speed: float = 0.0
 var speed_modifier: float = 1.0
 var knockback: Vector2 = Vector2.ZERO
+var pushback_strength = 40
 var enemy_in_range = false
 var atk_cooldown = true
 var player_alive = true
@@ -19,6 +20,7 @@ var light_nearby = false
 var torch_nearby: int
 var fire_direction: Vector2
 var is_dashing= false
+var is_vulnerable = true
 const DASH_SPEED = 100.0
 const TORCH = preload("res://Scenes/torch.tscn")
 const arrow_path = preload("res://Scenes/arrow.tscn")
@@ -72,7 +74,7 @@ func movement(delta: float):
 		velocity = velocity * speed_modifier
 	velocity += knockback
 	move_and_slide()
-	knockback = knockback.lerp(Vector2.ZERO, 0.7)
+	knockback = knockback.lerp(Vector2.ZERO, 6.0 * delta)
 
 func update_hpBar():
 	progress_bar.update_health(hp, maxHp)
@@ -162,18 +164,23 @@ func idle_animation():
 		$AtkArea/AtkHitbox.disabled = true
 		
 func received_damaged(dmg):
-	hp = hp -  dmg
-	update_hpBar()
-	if hp <= 0:
-		player_alive = false
-		game.GameOver()
+	#damage is only applied if the player is currently vulnerable
+	if is_vulnerable:
+		hp = hp -  dmg
+		update_hpBar()
+		if hp <= 0:
+			player_alive = false
+			game.GameOver()
 
-func pushback(pushback_direction: Vector2, pushback_strength):
-	#var pushback_direction = (position - enemy_position).normalized()
-	knockback += pushback_direction.normalized() * pushback_strength
-	#velocity = pushback_direction * pushback_strength  
-	#move_and_slide() 
-	
+#applies knockback to the player
+func pushback(pushback_direction: Vector2, strength):
+	if is_vulnerable:
+		knockback += pushback_direction.normalized() * strength
+
+func make_invulnerable():
+	is_vulnerable = false
+	$InvulnerabilityTimer.start()
+
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false
 	fire(fire_direction)
@@ -185,8 +192,12 @@ func _on_atk_area_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		body.received_damaged(atk)
 	if body.has_method("pushback"):
-		body.pushback(global_position.direction_to(body.global_position), 200)
+		body.pushback(global_position.direction_to(body.global_position), pushback_strength)
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
 	dash_timer.stop()
+
+
+func _on_invulnerability_timer_timeout() -> void:
+	is_vulnerable = true

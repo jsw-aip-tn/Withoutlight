@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 var maxhp = 20
 var hp = 20
-var atk = 6
+var atk = 5
 @export var SPEED : float = 30
-var pushback_strength  = 120
+var pushback_strength  = 100
 var knockback: Vector2 = Vector2.ZERO
 var player_in_range = false
 var direction = Vector2()
@@ -24,6 +24,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_alive:
 		movement(delta)
+		check_for_attack()
 	
 func enemy():
 	pass
@@ -32,7 +33,6 @@ func update_hpBar():
 	progress_bar.update_health(hp, maxhp)
 	
 func movement(delta: float):
-	#SPEED = 10.0
 	time_since_last_change += delta
 	if !player_in_range and !is_dashing:
 		if time_since_last_change >= change_interval:
@@ -51,7 +51,7 @@ func movement(delta: float):
 	
 	velocity += knockback
 	move_and_slide()
-	knockback = knockback.lerp(Vector2.ZERO, 0.7)
+	knockback = knockback.lerp(Vector2.ZERO, 6.0 * delta)
 
 func received_damaged(dmg):
 	hp = hp -  dmg
@@ -68,6 +68,20 @@ func received_damaged(dmg):
 func pushback(pushback_direction: Vector2, strength):
 	knockback += pushback_direction.normalized() * strength
 
+func check_for_attack():
+	#check if player is within hitbox and spider is able to attack
+	for body in $enemie_hitbox.get_overlapping_bodies():
+		if body.has_method("player") && player_in_range && is_dashing:
+			player_in_range = false
+			is_dashing = false
+			target = body
+			body.received_damaged(atk)
+			body.pushback(global_position.direction_to(body.global_position), pushback_strength)
+			body.make_invulnerable()
+			$AttackCooldownTimer.start()
+			print("ATTACK")
+			return
+
 func reset_animation():
 	if player_in_range:
 		$AnimationPlayer.play("walk")
@@ -75,14 +89,15 @@ func reset_animation():
 		$AnimationPlayer.play("idle")
 
 
-func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("player") and is_alive:
-		player_in_range = false
-		is_dashing = false
-		target = body
-		body.received_damaged(atk)
-		body.pushback(global_position.direction_to(body.global_position), pushback_strength)
-		$AttackCooldownTimer.start()
+#func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
+	#if body.has_method("player") and is_alive:
+		#player_in_range = false
+		#is_dashing = false
+		#target = body
+		#body.received_damaged(atk)
+		#body.pushback(global_position.direction_to(body.global_position), pushback_strength)
+		#body.make_invulnerable()
+		#$AttackCooldownTimer.start()
 
 func _on_search_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player") and is_alive:
@@ -113,6 +128,7 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 
 
 func _on_attack_cooldown_timer_timeout() -> void:
+	#go back to chasing the player if he is still in range
 	for body in $search_area.get_overlapping_bodies():
 		if body.has_method("player"):
 			player_in_range = true
