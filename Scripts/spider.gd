@@ -79,7 +79,6 @@ func check_for_attack():
 			body.pushback(global_position.direction_to(body.global_position), pushback_strength)
 			body.make_invulnerable()
 			$AttackCooldownTimer.start()
-			print("ATTACK")
 			return
 
 func reset_animation():
