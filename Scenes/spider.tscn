@@ -1,7 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://dnkbe522u62jj"]
+[gd_scene format=3 uid="uid://dnkbe522u62jj"]
 
 [ext_resource type="Texture2D" uid="uid://b4a5nwlrl806u" path="res://Assets/spider/Spider Sprite Sheet.png" id="1_cab4r"]
-[ext_resource type="Script" path="res://Scripts/spider.gd" id="1_umcsc"]
+[ext_resource type="Script" uid="uid://dnttbatr717rl" path="res://Scripts/spider.gd" id="1_umcsc"]
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="2_hdbfs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0w2y"]
@@ -130,7 +130,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j0w2y")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -186,7 +186,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iyut8")
 }],
-"loop": true,
+"loop": 0,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -203,7 +203,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j148s")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -223,7 +223,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hhtpi")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -246,7 +246,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4f8kk")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -254,42 +254,241 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vff7k"]
 radius = 3.5908
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_16ptw"]
-size = Vector2(8.08572, 5.80052)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbdki"]
+radius = 3.7433884
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ghvne"]
 radius = 1.19908
 
-[node name="spider" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kry3j"]
+radius = 4.208239
 
-[node name="spider" type="CharacterBody2D" parent="."]
+[sub_resource type="Animation" id="Animation_sbdki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:SPEED")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30.0]
+}
+
+[sub_resource type="Animation" id="Animation_nxbgl"]
+resource_name = "death"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+
+[sub_resource type="Animation" id="Animation_rp6o3"]
+resource_name = "hurt"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_animation"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:SPEED")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 30.0]
+}
+
+[sub_resource type="Animation" id="Animation_qu26k"]
+resource_name = "idle"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_mg3t7"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxbgl"]
+_data = {
+&"RESET": SubResource("Animation_sbdki"),
+&"death": SubResource("Animation_nxbgl"),
+&"hurt": SubResource("Animation_rp6o3"),
+&"idle": SubResource("Animation_qu26k"),
+&"walk": SubResource("Animation_mg3t7")
+}
+
+[node name="spider" type="Node2D" unique_id=1093128069]
+
+[node name="spider" type="CharacterBody2D" parent="." unique_id=1294980014]
 scale = Vector2(3.20435, 2.83318)
 script = ExtResource("1_umcsc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="spider"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="spider" unique_id=1423415715]
 position = Vector2(0, -8)
 scale = Vector2(0.71875, 0.75)
 sprite_frames = SubResource("SpriteFrames_xp5q2")
-animation = &"walk"
+animation = &"hurt"
 autoplay = "idle"
-frame_progress = 0.803286
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider" unique_id=757716547]
 position = Vector2(-0.156039, 0.941282)
 shape = SubResource("CircleShape2D_vff7k")
 
-[node name="enemy_hitbox" type="Area2D" parent="spider"]
+[node name="enemy_hitbox" type="Area2D" parent="spider" unique_id=1538962378]
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemy_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemy_hitbox" unique_id=1429913151]
 position = Vector2(-0.149727, -1.0876)
-shape = SubResource("RectangleShape2D_16ptw")
+shape = SubResource("CircleShape2D_sbdki")
+disabled = true
 
-[node name="Timer" type="Timer" parent="spider"]
+[node name="Timer" type="Timer" parent="spider" unique_id=261292302]
 autostart = true
 
-[node name="ProgressBar2" parent="spider" instance=ExtResource("2_hdbfs")]
+[node name="ProgressBar2" parent="spider" unique_id=1610696327 instance=ExtResource("2_hdbfs")]
 offset_left = -4.99321
 offset_top = 6.00032
 offset_right = 0.00678968
@@ -297,20 +496,32 @@ offset_bottom = 7.00032
 scale = Vector2(1.97721, 2.19209)
 value = 20.0
 
-[node name="search_area" type="Area2D" parent="spider"]
+[node name="search_area" type="Area2D" parent="spider" unique_id=1958759762]
 scale = Vector2(1.12727, 1.22671)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/search_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/search_area" unique_id=1321766064]
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_ghvne")
 
-[node name="enemie_hitbox" type="Area2D" parent="spider"]
+[node name="enemie_hitbox" type="Area2D" parent="spider" unique_id=935837149]
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemie_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spider/enemie_hitbox" unique_id=247771363]
 position = Vector2(9.15155e-06, -1.0876)
-shape = SubResource("RectangleShape2D_16ptw")
+shape = SubResource("CircleShape2D_kry3j")
+debug_color = Color(0.88764316, 0.3053037, 0.3310083, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="spider" unique_id=1493582723]
+libraries/ = SubResource("AnimationLibrary_nxbgl")
+autoplay = &"idle"
+
+[node name="AttackCooldownTimer" type="Timer" parent="spider" unique_id=1124404691]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
 
 [connection signal="body_entered" from="spider/search_area" to="spider" method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="spider/search_area" to="spider" method="_on_search_area_body_exited"]
+[connection signal="body_entered" from="spider/enemie_hitbox" to="spider" method="_on_enemie_hitbox_body_entered"]
+[connection signal="timeout" from="spider/AttackCooldownTimer" to="spider" method="_on_attack_cooldown_timer_timeout"]

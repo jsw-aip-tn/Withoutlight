@@ -1,7 +1,11 @@
 extends Node2D
 
 var many_to_spawn: int 
+var number_of_bats: int
+var number_of_spiders: int
+var number_of_wolves: int
 const BAT = preload("res://Scenes/bat.tscn")
+const SPIDER = preload("res://Scenes/spider.tscn")
 const WOOD = preload("res://Scenes/wood.tscn")
 
 @onready var wave_timer: Timer = $WaveTimer
@@ -13,21 +17,31 @@ func _ready() -> void:
 	#prepare_spawn("bat", 10,15)
 
 func start_wave():
-	Global.current_wave += 1  
-	many_to_spawn = Global.current_wave 
+	Global.current_wave += 1
+	many_to_spawn = Global.current_wave
+	distribute_spawns()
 	spawn_monsters()
 	spawn_wood()
 	wave_timer.start()
-	print(Global.current_wave)
+	print("Wave ", Global.current_wave, " begins now.")
 
 func spawn_monsters():
+	#spawn bats
 	var bat_spawn_points = [$SpawnPoints/BatSpawn1, $SpawnPoints/BatSpawn2, $SpawnPoints/BatSpawn3, $SpawnPoints/BatSpawn4, $SpawnPoints/BatSpawn5]
-	for i in range(many_to_spawn):
+	for i in range(number_of_bats):
 		var spawn_point = bat_spawn_points[i % bat_spawn_points.size()]  # Modulo damit man nicht über die Anzal der Spawnpoint micht überschritter wird
 		var bat = BAT.instantiate()
 		bat.position = spawn_point.position
 		add_child(bat)
-		
+	
+	#spawn spiders
+	var spider_spawn_points = [$SpawnPoints/SpiderSpawn, $SpawnPoints/SpiderSpawn2, $SpawnPoints/SpiderSpawn3, $SpawnPoints/SpiderSpawn5, $SpawnPoints/SpiderSpawn4]
+	for i in range(number_of_spiders):
+		var spawn_point = spider_spawn_points[i % spider_spawn_points.size()]  # Modulo damit man nicht über die Anzal der Spawnpoint micht überschritter wird
+		var spider = SPIDER.instantiate()
+		spider.position = spawn_point.position
+		add_child(spider)
+
 func spawn_wood():
 	var wood_spawn_points = [$SpawnPoints/WoodSpawn]
 	for i in range(many_to_spawn ):
@@ -35,13 +49,25 @@ func spawn_wood():
 		var wood = WOOD.instantiate()
 		wood.position = spawn_point.position
 		add_child(wood)
-		
+
 
 
 func _on_wave_timer_timeout() -> void:
 	wave_timer.stop()
 	start_wave()
 
+#based on the wave, determine how many of each enemy to spawn
+func distribute_spawns():
+	#only spawns bats in first 3 waves
+	if Global.current_wave <= 3:
+		number_of_bats = many_to_spawn
+		number_of_spiders = 0
+		number_of_wolves = 0
+	#spawns bats and spiders in waves 4-6
+	elif Global.current_wave <= 6:
+		number_of_bats = ceil(many_to_spawn / 2.0)
+		number_of_spiders = floor(many_to_spawn / 2.0)
+		number_of_wolves = 0
 
 #func prepare_spawn(type, multiplier, mob_spawns):
 	#var mob_amount = float(current_wave) * multiplier

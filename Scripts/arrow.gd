@@ -16,7 +16,7 @@ func _ready() -> void:
 	global_rotation = rota
 	_start_timer()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !found_target:
 		velocity = (Vector2.RIGHT * SPEED).rotated(rota)
 	else:   

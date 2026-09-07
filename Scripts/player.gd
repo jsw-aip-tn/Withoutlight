@@ -5,6 +5,9 @@ var hp = 100
 var atk = 10
 var SPEED = 80.0
 var dash_speed: float = 0.0
+var speed_modifier: float = 1.0
+var knockback: Vector2 = Vector2.ZERO
+var pushback_strength = 40
 var enemy_in_range = false
 var atk_cooldown = true
 var player_alive = true
@@ -17,6 +20,7 @@ var light_nearby = false
 var torch_nearby: int
 var fire_direction: Vector2
 var is_dashing= false
+var is_vulnerable = true
 const DASH_SPEED = 100.0
 const TORCH = preload("res://Scenes/torch.tscn")
 const arrow_path = preload("res://Scenes/arrow.tscn")
@@ -32,7 +36,7 @@ func _ready() -> void:
 	update_hpBar()
 
 func _physics_process(delta: float) -> void:
-	movement()
+	movement(delta)
 	place_torch()
 	update_woodtext()
 	
@@ -42,21 +46,21 @@ func _physics_process(delta: float) -> void:
 func player():
 	pass
 
-func movement():
+func movement(delta: float):
 	if !is_dashing:
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if facing != direction and direction != Vector2.ZERO:
 			facing = direction
 		if direction.length():
 			direction = direction.normalized()
-			velocity = direction * (SPEED + dash_speed)
+			velocity = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			idle_animation()
 		if !melee_attack_triggered && !range_attack_triggered:
 			animation()
-			move_and_slide()
+			
 	else:
 		if direction.x == 0:
 			match animated_sprite.flip_h:
@@ -64,8 +68,13 @@ func movement():
 				false: direction.x = 1
 		direction = direction.normalized()
 		velocity = direction * (SPEED + dash_speed)
-		move_and_slide()
-		
+	
+	if melee_attack_triggered || range_attack_triggered:
+		speed_modifier = move_toward(speed_modifier, 0, 2 * delta)
+		velocity = velocity * speed_modifier
+	velocity += knockback
+	move_and_slide()
+	knockback = knockback.lerp(Vector2.ZERO, 6.0 * delta)
 
 func update_hpBar():
 	progress_bar.update_health(hp, maxHp)
@@ -97,7 +106,7 @@ func animation():
 			$AtkArea/AtkHitbox.position.x = -15
 		if not animated_sprite.is_playing() or animated_sprite.animation != "run":
 			animated_sprite.play("run")  # Abspielen der Lauf-Animation
-		$AtkArea/AtkHitbox.disabled = true
+		#$AtkArea/AtkHitbox.disabled = true
 #Bewegung nach Oben
 	if direction.y != 0:
 		if not animated_sprite.is_playing() or animated_sprite.animation != "run":
@@ -154,28 +163,41 @@ func idle_animation():
 		animated_sprite.play("idle")  # Abspielen der Idle-Animation
 		$AtkArea/AtkHitbox.disabled = true
 		
-func received_damaged(atk):
-	hp = hp -  atk
-	update_hpBar()
-	if hp <= 0:
-		player_alive = false
-		game.GameOver()
+func received_damaged(dmg):
+	#damage is only applied if the player is currently vulnerable
+	if is_vulnerable:
+		hp = hp -  dmg
+		update_hpBar()
+		if hp <= 0:
+			player_alive = false
+			game.GameOver()
 
-func pushback(enemy_position: Vector2, pushback_strength):
-	var pushback_direction = (position - enemy_position)  
-	velocity = pushback_direction * pushback_strength  
-	move_and_slide() 
-	
+#applies knockback to the player
+func pushback(pushback_direction: Vector2, strength):
+	if is_vulnerable:
+		knockback += pushback_direction.normalized() * strength
+
+func make_invulnerable():
+	is_vulnerable = false
+	$InvulnerabilityTimer.start()
+
 func _on_atk_cooldown_timeout() -> void:
 	melee_attack_triggered = false
 	fire(fire_direction)
 	range_attack_triggered = false
-	cooldown_timer.stop()
+	$AtkArea/AtkHitbox.disabled = true
+	speed_modifier = 1.0
 
 func _on_atk_area_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		body.received_damaged(atk)
+	if body.has_method("pushback"):
+		body.pushback(global_position.direction_to(body.global_position), pushback_strength)
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
 	dash_timer.stop()
+
+
+func _on_invulnerability_timer_timeout() -> void:
+	is_vulnerable = true

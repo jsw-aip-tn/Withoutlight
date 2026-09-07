@@ -1,14 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjif787o0f6fa"]
+[gd_scene format=3 uid="uid://bjif787o0f6fa"]
 
-[ext_resource type="Script" path="res://Scripts/bat.gd" id="1_rx3w4"]
+[ext_resource type="Script" uid="uid://bghppvwsswi8q" path="res://Scripts/bat.gd" id="1_rx3w4"]
 [ext_resource type="Texture2D" uid="uid://b3uatusihceb6" path="res://Assets/Bat/Bat1.png" id="1_wigmr"]
 [ext_resource type="Texture2D" uid="uid://cnllmbd60ywob" path="res://Assets/Bat/Bat2.png" id="2_rdycs"]
 [ext_resource type="Texture2D" uid="uid://bpo82gqpnvdpv" path="res://Assets/Bat/Bat3.png" id="3_m22dl"]
 [ext_resource type="Texture2D" uid="uid://cr7f4evegbayv" path="res://Assets/Bat/Bat4.png" id="4_kppu8"]
 [ext_resource type="PackedScene" uid="uid://bcs26su4ta5m1" path="res://Scenes/HPBar.tscn" id="6_uptis"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_84b2s"]
-size = Vector2(125, 70)
+[sub_resource type="CircleShape2D" id="CircleShape2D_y36tb"]
+radius = 33.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrc82"]
 size = Vector2(119, 76)
@@ -28,47 +28,49 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_kppu8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"fly",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2l43x"]
 
-[node name="Bat" type="Node2D"]
+[node name="Bat" type="Node2D" unique_id=1246051290]
 light_mask = 7
 visibility_layer = 7
 position = Vector2(1.90735e-06, 4.76837e-07)
 scale = Vector2(0.2, 0.2)
 
-[node name="Bat" type="CharacterBody2D" parent="."]
+[node name="Bat" type="CharacterBody2D" parent="." unique_id=85581382]
 floor_constant_speed = true
+platform_floor_layers = 0
+safe_margin = 0.12
 script = ExtResource("1_rx3w4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat" unique_id=205552144]
 position = Vector2(-2.50002, -5.66244e-06)
-shape = SubResource("RectangleShape2D_84b2s")
+shape = SubResource("CircleShape2D_y36tb")
 
-[node name="enemy_hitbox" type="Area2D" parent="Bat"]
+[node name="enemy_hitbox" type="Area2D" parent="Bat" unique_id=2069900528]
 position = Vector2(-9.53674e-06, -2.38419e-06)
 scale = Vector2(1.04209, -0.973596)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemy_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemy_hitbox" unique_id=126983265]
 position = Vector2(-2.38419e-07, 1.78814e-07)
 shape = SubResource("RectangleShape2D_jrc82")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bat" unique_id=594069865]
 position = Vector2(-9.41753e-06, -2.44379e-06)
 sprite_frames = SubResource("SpriteFrames_wlrea")
 animation = &"fly"
 autoplay = "fly"
 frame_progress = 0.460057
 
-[node name="Timer" type="Timer" parent="Bat"]
+[node name="Timer" type="Timer" parent="Bat" unique_id=2030183396]
 wait_time = 2.0
 autostart = true
 
-[node name="ProgressBar2" parent="Bat" instance=ExtResource("6_uptis")]
+[node name="ProgressBar2" parent="Bat" unique_id=1342989267 instance=ExtResource("6_uptis")]
 offset_left = -55.0
 offset_top = 45.0
 offset_right = -36.0
@@ -76,20 +78,25 @@ offset_bottom = 48.0
 scale = Vector2(5.68888, 3.65064)
 value = 20.0
 
-[node name="search_area" type="Area2D" parent="Bat"]
+[node name="search_area" type="Area2D" parent="Bat" unique_id=1602420071]
 scale = Vector2(1.12727, 1.22671)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/search_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/search_area" unique_id=944978771]
 scale = Vector2(-39.7203, 26.2304)
 shape = SubResource("CircleShape2D_2l43x")
 
-[node name="enemie_hitbox" type="Area2D" parent="Bat"]
-position = Vector2(-9.53674e-06, -2.38419e-06)
+[node name="enemie_hitbox" type="Area2D" parent="Bat" unique_id=812577133]
 scale = Vector2(1.04209, -0.973596)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/enemie_hitbox" unique_id=1012421567]
 position = Vector2(-2.38419e-07, 1.78814e-07)
 shape = SubResource("RectangleShape2D_jrc82")
+debug_color = Color(0.8676566, 0.3269491, 0.36425123, 0.41960785)
+
+[node name="AttackCooldownTimer" type="Timer" parent="Bat" unique_id=2105363930]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
 
 [connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Bat/enemy_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
@@ -100,3 +107,4 @@ shape = SubResource("RectangleShape2D_jrc82")
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_entered"]
 [connection signal="body_exited" from="Bat/enemie_hitbox" to="Bat" method="_on_enemie_hitbox_body_exited"]
+[connection signal="timeout" from="Bat/AttackCooldownTimer" to="Bat" method="_on_attack_cooldown_timer_timeout"]

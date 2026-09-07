@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cg7gdqta2qlxu"]
+[gd_scene format=3 uid="uid://cg7gdqta2qlxu"]
 
-[ext_resource type="Script" path="res://Scripts/torch.gd" id="1_537kc"]
+[ext_resource type="Script" uid="uid://btaq2y0p8tikn" path="res://Scripts/torch.gd" id="1_537kc"]
 [ext_resource type="Texture2D" uid="uid://ca301heqlctvg" path="res://Assets/Torch/Torch_32_Flamas_0.png" id="1_x3npq"]
 [ext_resource type="Texture2D" uid="uid://cnsjrbg4gv5j5" path="res://Assets/Torch/Torch_32_Flamas_1.png" id="2_fuwvo"]
 [ext_resource type="Texture2D" uid="uid://boi25un6j6qmf" path="res://Assets/Torch/Torch_32_Flamas_2.png" id="3_yajot"]
@@ -33,7 +33,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_d0xrj")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Fire",
 "speed": 8.0
 }]
@@ -48,27 +48,28 @@ width = 200
 height = 200
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.95, 0.05)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccjbt"]
 radius = 80.399
 
-[node name="Torch" type="Node2D"]
+[node name="Torch" type="Node2D" unique_id=318098034]
 script = ExtResource("1_537kc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=632306666]
 sprite_frames = SubResource("SpriteFrames_wplal")
 animation = &"Fire"
 autoplay = "Fire"
 frame = 6
 frame_progress = 1.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1687759613]
 color = Color(1, 0.721569, 0.117647, 1)
 texture = SubResource("GradientTexture2D_f2ycx")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1070697388]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1620505219]
 shape = SubResource("CircleShape2D_ccjbt")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

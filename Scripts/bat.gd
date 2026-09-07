@@ -2,16 +2,17 @@ extends CharacterBody2D
 
 var maxhp = 20
 var hp = 20
-var atk = 2
-@export var SPEED : float = 50
-var pushback_strength  = 0.5
+var atk = 4
+@export var SPEED : float = 40
+var pushback_strength  = 40
+var knockback: Vector2 = Vector2.ZERO
 var player_in_range = false
 var direction = Vector2()
 var time_since_last_change = 0
 var change_interval = 2  # Alle 2 Sekunden die Richtung ändern
 var target
 var target_direction: Vector2 = Vector2.ZERO
-var dash_speed = 5
+var dash_speed = 2.0
 var is_dashing = false
 @onready var progress_bar: ProgressBar = $ProgressBar2
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	movement(delta)
+	check_for_attack()
 	
 func enemy():
 	pass
@@ -34,27 +36,47 @@ func movement(delta: float):
 			var angle = randf_range(0, 2 * PI)  # Zufälligen Winkel generieren
 			direction = Vector2(cos(angle), sin(angle)) # Berechne Richtung
 			time_since_last_change = 0
-			velocity = direction.normalized() * SPEED	
-		move_and_slide()
-	if  player_in_range and is_dashing:
+			velocity = direction.normalized() * SPEED
+	elif  player_in_range and is_dashing:
 		is_dashing = true
 		target_direction = (target.global_position - global_position).normalized()
-		velocity = target_direction * SPEED * dash_speed 
-		move_and_slide()
+		velocity = target_direction * SPEED * dash_speed
 	
-func received_damaged(atk):
-	hp = hp -  atk
+	velocity += knockback
+	move_and_slide()
+	knockback = knockback.lerp(Vector2.ZERO, 6.0 * delta)
+	
+func received_damaged(dmg):
+	hp = hp -  dmg
 	update_hpBar()
 	if hp <= 0:
 		queue_free()
 
-func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
-		target = body
-		body.received_damaged(atk)
-		body.pushback(position, pushback_strength)
-		player_in_range = false
-		is_dashing = false
+func pushback(pushback_direction: Vector2, strength):
+	knockback += pushback_direction.normalized() * strength
+
+func check_for_attack():
+	#check if player is within hitbox and bat is able to attack
+	for body in $enemy_hitbox.get_overlapping_bodies():
+		if body.has_method("player") && player_in_range && is_dashing:
+			player_in_range = false
+			is_dashing = false
+			target = body
+			body.received_damaged(atk)
+			body.pushback(global_position.direction_to(body.global_position), pushback_strength)
+			body.make_invulnerable()
+			$AttackCooldownTimer.start()
+			return
+
+#func _on_enemie_hitbox_body_entered(body: Node2D) -> void:
+	#if body.has_method("player"):
+		#target = body
+		#body.received_damaged(atk)
+		#body.pushback(global_position.direction_to(body.global_position), pushback_strength)
+		#body.make_invulnerable()
+		#player_in_range = false
+		#is_dashing = false
+		#$AttackCooldownTimer.start()
 
 func _on_search_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
@@ -68,3 +90,12 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 		player_in_range = false
 		is_dashing = false
 		
+
+
+func _on_attack_cooldown_timer_timeout() -> void:
+	#go back to chasing the player if he is still in range
+	for body in $search_area.get_overlapping_bodies():
+		if body.has_method("player"):
+			player_in_range = true
+			is_dashing = true
+			return
